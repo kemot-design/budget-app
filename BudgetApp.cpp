@@ -27,3 +27,7 @@ char BudgetApp::selectOptionFromUserMenu(){
 void BudgetApp::registerUser(){
     userManager.registerUser();
 }
+
+void BudgetApp::loginUser(){
+    userManager.loginUser();
+}

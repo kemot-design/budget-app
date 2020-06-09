@@ -20,6 +20,7 @@ class UserManager{
 public:
     UserManager();
     void registerUser();
+    void loginUser();
 
 };
 

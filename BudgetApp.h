@@ -13,6 +13,7 @@ public:
     BudgetApp();
     void registerUser();
     char selectOptionFromUserMenu();
+    void loginUser();
 
 
 };

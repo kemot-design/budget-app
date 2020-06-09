@@ -34,6 +34,10 @@ string User::getLogin(){
     return login;
 }
 
+string User::getPassword(){
+    return password;
+}
+
 string User::getName(){
     return name;
 }

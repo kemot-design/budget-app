@@ -20,7 +20,7 @@ int main()
                 budgetApp.registerUser();
                 break;
             case '2':
-                //budgetApp.loginUser();
+                budgetApp.loginUser();
                 break;
             case '9':
                 exit(0);
