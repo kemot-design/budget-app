@@ -31,3 +31,28 @@ void BudgetApp::registerUser(){
 void BudgetApp::loginUser(){
     userManager.loginUser();
 }
+
+bool BudgetApp::isUserLoggedIn(){
+    userManager.isUserLoggedIn();
+}
+
+char BudgetApp::selectOptionFromAppMenu(){
+    char selection;
+
+    system("cls");
+    cout << " >>> APP MENU <<<" << endl;
+    cout << "---------------------------" << endl;
+    cout << "1. Add income" << endl;
+    cout << "2. Add expense" << endl;
+    cout << "3. Show current month balance" << endl;
+    cout << "4. Show previous month balance" << endl;
+    cout << "5. Show selected period balance" << endl;
+    cout << "---------------------------" << endl;
+    cout << "6. Change password" << endl;
+    cout << "7. Log out" << endl;
+    cout << "---------------------------" << endl;
+    cout << "Your selection: ";
+    selection = AuxiliaryMethods::loadChar();
+
+    return selection;
+}

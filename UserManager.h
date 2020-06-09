@@ -21,6 +21,7 @@ public:
     UserManager();
     void registerUser();
     void loginUser();
+    bool isUserLoggedIn();
 
 };
 

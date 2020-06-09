@@ -13,7 +13,9 @@ public:
     BudgetApp();
     void registerUser();
     char selectOptionFromUserMenu();
+    bool isUserLoggedIn();
     void loginUser();
+    char selectOptionFromAppMenu();
 
 
 };

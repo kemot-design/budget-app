@@ -90,8 +90,6 @@ void UserManager::loginUser(){
                     cout << endl << "You are logged in." << endl << endl;
                     system("pause");
                     loggedUserId = itr -> getId();
-                    cout << "Id zalogowanego uzytkownika = " << loggedUserId << endl;
-                    system("pause");
                     return;
                 }
             }
@@ -105,4 +103,11 @@ void UserManager::loginUser(){
     cout << "There is no user with that login" << endl << endl;
     system("pause");
     loggedUserId = 0;
+}
+
+bool UserManager::isUserLoggedIn(){
+    if(loggedUserId > 0)
+        return true;
+    else
+        return false;
 }
