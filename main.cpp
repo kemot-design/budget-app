@@ -58,12 +58,10 @@ int main()
                 system("pause");
                 break;
             case '6':
-                cout << "Change password" << endl;
-                system("pause");
+                budgetApp.changeUserPassword();
                 break;
             case '7':
-                cout << "Log out" << endl;
-                system("pause");
+                budgetApp.logoutUser();
                 break;
             }
         }

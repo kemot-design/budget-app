@@ -56,3 +56,11 @@ char BudgetApp::selectOptionFromAppMenu(){
 
     return selection;
 }
+
+void BudgetApp::changeUserPassword(){
+    userManager.changeUserPassword();
+}
+
+void BudgetApp::logoutUser(){
+    userManager.logoutUser();
+}

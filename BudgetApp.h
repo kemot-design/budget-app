@@ -16,6 +16,8 @@ public:
     bool isUserLoggedIn();
     void loginUser();
     char selectOptionFromAppMenu();
+    void changeUserPassword();
+    void logoutUser();
 
 
 };
