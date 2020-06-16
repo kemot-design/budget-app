@@ -30,6 +30,9 @@ void BudgetApp::registerUser(){
 
 void BudgetApp::loginUser(){
     userManager.loginUser();
+    if(isUserLoggedIn()){
+        incomeManager = new IncomeManager;
+    }
 }
 
 bool BudgetApp::isUserLoggedIn(){

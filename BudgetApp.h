@@ -3,11 +3,13 @@
 
 #include <iostream>
 #include "UserManager.h"
+#include "IncomeManager.h"
 
 using namespace std;
 
 class BudgetApp{
     UserManager userManager;
+    IncomeManager *incomeManager;
 
 public:
     BudgetApp();

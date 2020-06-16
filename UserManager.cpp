@@ -115,6 +115,7 @@ bool UserManager::isUserLoggedIn(){
 
 void UserManager::changeUserPassword(){
     string newPassword = "";
+    system("cls");
     cout << "New password: ";
     newPassword = AuxiliaryMethods::loadLine();
 
