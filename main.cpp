@@ -38,8 +38,7 @@ int main()
             switch (selection)
             {
             case '1':
-                cout << "Add income" << endl;
-                system("pause");
+                budgetApp.addIncome();
                 break;
             case '2':
                 cout << "Add expense" << endl;

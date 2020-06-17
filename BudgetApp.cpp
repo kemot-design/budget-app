@@ -66,4 +66,10 @@ void BudgetApp::changeUserPassword(){
 
 void BudgetApp::logoutUser(){
     userManager.logoutUser();
+    delete incomeManager;
+    incomeManager = NULL;
+}
+
+void BudgetApp::addIncome(){
+    incomeManager -> addNewIncome();
 }

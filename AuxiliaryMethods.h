@@ -10,6 +10,7 @@ public:
     static char loadChar();
     static string loadLine();
     static string setFirstLetterUppercaseRestLowercase(string someText);
+    static int convertStrToInt(string number);
 };
 
 

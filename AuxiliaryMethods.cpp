@@ -36,3 +36,11 @@ string AuxiliaryMethods::setFirstLetterUppercaseRestLowercase(string someText){
     }
     return someText;
 }
+
+int AuxiliaryMethods::convertStrToInt(string numberStr){
+    int numberInt;
+    istringstream iss(numberStr);
+    iss >> numberInt;
+
+    return numberInt;
+}

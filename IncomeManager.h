@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "Income.h"
+#include "Date.h"
 
 
 using namespace std;
@@ -12,8 +13,11 @@ class IncomeManager{
     vector <Income> incomes;
     //UsesFile usersFile;
 
-public:
+    Income setNewIncomeData();
+    Date specyfyIncomeDate();
 
+public:
+    void addNewIncome();
 
 };
 

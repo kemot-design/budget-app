@@ -15,7 +15,9 @@ public:
     int getMonth();
     int getDay();
     bool isIsLaterThan(Date someDate);
-
+    void showDate();
+    void getTodaysDate();
+    void getDateFromString(string someDate);
 };
 
 #endif // DATE_H
