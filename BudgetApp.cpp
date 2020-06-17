@@ -4,8 +4,8 @@
 
 using namespace std;
 
-BudgetApp::BudgetApp(){
-
+BudgetApp::BudgetApp(string usersFileName): userManager(usersFileName){
+    incomeManager = NULL;
 }
 
 char BudgetApp::selectOptionFromUserMenu(){

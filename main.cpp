@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     char selection;
-    BudgetApp budgetApp;
+    BudgetApp budgetApp("Users.xml");
     while (true)
     {
         if (!budgetApp.isUserLoggedIn())

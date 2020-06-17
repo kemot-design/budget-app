@@ -5,7 +5,7 @@
 
 using namespace std;
 
-UserManager::UserManager(){
+UserManager::UserManager(string usersFileName): usersFile(usersFileName){
     loggedUserId = 0;
 }
 
@@ -14,7 +14,7 @@ void UserManager::registerUser(){
 
     users.push_back(user);
 
-    //plikZUzytkownikami.dopiszUzytkownikaDoPliku(uzytkownik);
+    usersFile.saveUserToFile(user);
 
     cout << endl << "Your account was successfully registered" << endl << endl;
     system("pause");

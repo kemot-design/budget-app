@@ -12,7 +12,7 @@ class BudgetApp{
     IncomeManager *incomeManager;
 
 public:
-    BudgetApp();
+    BudgetApp(string usersFileName);
     void registerUser();
     char selectOptionFromUserMenu();
     bool isUserLoggedIn();
