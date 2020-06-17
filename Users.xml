@@ -6,4 +6,16 @@
 <Login>a</Login>
 <Password>a</Password>
 </User>
+<User>
+<Name>Jan</Name>
+<Surname>Matejo</Surname>
+<Login>b</Login>
+<Password>b</Password>
+</User>
+<User>
+<Name>Ewa</Name>
+<Surname>Minge</Surname>
+<Login>c</Login>
+<Password>c</Password>
+</User>
 </Users>
