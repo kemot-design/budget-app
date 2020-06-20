@@ -12,5 +12,6 @@ class UsersFile: XMLFile{
 public:
     UsersFile(string usersFileName): XMLFile(usersFileName) {};
     void saveUserToFile(User user);
+    vector <User> loadUsersFromFile();
 };
 #endif

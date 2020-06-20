@@ -7,6 +7,7 @@ using namespace std;
 
 UserManager::UserManager(string usersFileName): usersFile(usersFileName){
     loggedUserId = 0;
+    users = usersFile.loadUsersFromFile();
 }
 
 void UserManager::registerUser(){
