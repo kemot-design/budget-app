@@ -20,7 +20,7 @@ void UsersFile::saveUserToFile(User user){
         xml.AddElem("Surname", user.getSurname());
         xml.AddElem("Login", user.getLogin());
         xml.AddElem("Password", user.getPassword());
-        xml.Save("Users.xml");
+        xml.Save(getFileName());
     }
     else{
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
@@ -33,7 +33,7 @@ void UsersFile::saveUserToFile(User user){
         xml.AddElem("Surname", user.getSurname());
         xml.AddElem("Login", user.getLogin());
         xml.AddElem("Password", user.getPassword());
-        xml.Save("Users.xml");
+        xml.Save(getFileName());
     }
 }
 

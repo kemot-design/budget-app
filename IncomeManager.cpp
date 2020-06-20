@@ -65,6 +65,12 @@ Date IncomeManager::specyfyIncomeDate(){
 
     cout << "Specyfy income date (yyyy-mm-dd" << endl;
     incomeDateStr = AuxiliaryMethods::loadLine();
+    while(incomeDate.isValidDateFormat(incomeDateStr) == false){
+        cout << "Please enter date in correct format yyyy-mm-dd" << endl;
+        incomeDateStr = AuxiliaryMethods::loadLine();
+    }
+
     incomeDate.getDateFromString(incomeDateStr);
     return incomeDate;
+
 }

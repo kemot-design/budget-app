@@ -39,7 +39,15 @@ bool Date::isIsLaterThan(Date someDate){
 }
 
 void Date::showDate(){
-    cout << year << "-" << month << "-" << day << endl;
+    cout << year << "-";
+    if(month < 10){
+        cout << "0" << month << "-";
+    }
+    else cout << month << "-";
+    if(day < 10){
+        cout << "0" << day << endl;
+    }
+    else cout << day << endl;
 }
 
 void Date::getTodaysDate(){
@@ -88,4 +96,83 @@ void Date::getDateFromString(string someDate){
             system("pause");
         }
     }
+}
+
+bool Date::isValidDateFormat(string someDate){
+    string dateElement;
+    int year, month, day;
+
+    if(someDate.length() != 10) return false;
+
+    for(int i = 0 ; i < someDate.length() ; i++){
+        if(i < 4){
+            dateElement = dateElement + someDate[i];
+            if(i == 3){
+                year = AuxiliaryMethods::convertStrToInt(dateElement);
+                if(isValidYear(year)){
+                    dateElement = "";
+                }
+                else return false;
+            }
+        }
+
+        if(i == 5 || i == 6){
+            dateElement = dateElement + someDate[i];
+            if(i == 6){
+                month = AuxiliaryMethods::convertStrToInt(dateElement);
+
+                if(isValidMonth(month)){
+                    dateElement = "";
+                }
+                else return false;
+            }
+        }
+
+        if(i == 8 || i == 9){
+            dateElement = dateElement + someDate[i];
+            if(i == 9){
+                day = AuxiliaryMethods::convertStrToInt(dateElement);
+                if(isValidDay(day, month, year)){
+                    dateElement = "";
+                }
+                else return false;
+            }
+        }
+
+        if(i == 4 || i == 7){
+            if(someDate[i] != '-' ) return false;
+        }
+    }
+    return true;
+}
+
+bool Date::isValidYear(int yearToCheck){
+    if(yearToCheck >= 2000) return true;
+    return false;
+}
+
+bool Date::isValidMonth(int monthToCheck){
+    if(monthToCheck > 0 && monthToCheck < 13) return true;
+    return false;
+}
+
+bool Date::isValidDay(int dayToCheck, int monthToCheck, int yearToCheck){
+    int maxDaysInMonth = getNumberOfDaysInMonth(monthToCheck, yearToCheck);
+    if(dayToCheck > 0 && dayToCheck <= maxDaysInMonth) return true;
+    else return false;
+}
+
+int  Date::getNumberOfDaysInMonth(int monthToCheck, int yearToCheck){
+	//leap year condition, if month is 2
+	if( monthToCheck == 2){
+		if((yearToCheck % 400 == 0) || (yearToCheck % 4 == 0 && yearToCheck % 100 != 0))
+			return 29;
+		else
+			return 28;
+	}
+	else if(monthToCheck == 1 || monthToCheck == 3 || monthToCheck == 5 || monthToCheck == 7 || monthToCheck == 8
+	|| monthToCheck == 10 || monthToCheck==12)
+		return 31;
+	else
+		return 30;
 }
