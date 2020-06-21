@@ -18,6 +18,7 @@ public:
     int getYear();
     int getMonth();
     int getDay();
+    string getDate();
     bool isIsLaterThan(Date someDate);
     void showDate();
     void getTodaysDate();

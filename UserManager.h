@@ -25,6 +25,7 @@ public:
     bool isUserLoggedIn();
     void changeUserPassword();
     void logoutUser();
+    int getLoggedUserId();
 
 };
 

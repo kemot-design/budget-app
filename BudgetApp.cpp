@@ -4,7 +4,7 @@
 
 using namespace std;
 
-BudgetApp::BudgetApp(string usersFileName): userManager(usersFileName){
+BudgetApp::BudgetApp(string usersFileName, string incomesFileName): userManager(usersFileName), INCOMES_FILE_NAME(incomesFileName){
     incomeManager = NULL;
 }
 
@@ -31,7 +31,7 @@ void BudgetApp::registerUser(){
 void BudgetApp::loginUser(){
     userManager.loginUser();
     if(isUserLoggedIn()){
-        incomeManager = new IncomeManager;
+        incomeManager = new IncomeManager(INCOMES_FILE_NAME, userManager.getLoggedUserId());
     }
 }
 

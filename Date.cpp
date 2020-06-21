@@ -66,12 +66,11 @@ void Date::getTodaysDate(){
 
 void Date::getDateFromString(string someDate){
     string numberStr = "";
+
     for(int i = 0 ; i < 10 ; i++){
         numberStr = numberStr + someDate[i];
         if(i == 3){
             year = AuxiliaryMethods::convertStrToInt(numberStr);
-            cout << year << endl;
-            system("pause");
         }
         else if(i == 4){
             numberStr = "";
@@ -81,8 +80,6 @@ void Date::getDateFromString(string someDate){
                 numberStr = numberStr[1];
             }
             month = AuxiliaryMethods::convertStrToInt(numberStr);
-            cout << month << endl;
-            system("pause");
         }
         else if(i == 7){
             numberStr = "";
@@ -92,8 +89,6 @@ void Date::getDateFromString(string someDate){
                 numberStr = numberStr[1];
             }
             day = AuxiliaryMethods::convertStrToInt(numberStr);
-            cout << day << endl;
-            system("pause");
         }
     }
 }
@@ -175,4 +170,18 @@ int  Date::getNumberOfDaysInMonth(int monthToCheck, int yearToCheck){
 		return 31;
 	else
 		return 30;
+}
+
+string Date::getDate(){
+    string date = "";
+    date = date + AuxiliaryMethods::convertIntToString(year) + "-";
+    if(month < 10){
+        date = date + "0" + AuxiliaryMethods::convertIntToString(month) + "-";
+    }
+    else date = date + AuxiliaryMethods::convertIntToString(month) + "-";
+    if(day < 10){
+        date = date + "0" + AuxiliaryMethods::convertIntToString(day);
+    }
+    else date = date + AuxiliaryMethods::convertIntToString(day);
+    return date;
 }

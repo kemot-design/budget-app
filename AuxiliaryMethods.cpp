@@ -44,3 +44,29 @@ int AuxiliaryMethods::convertStrToInt(string numberStr){
 
     return numberInt;
 }
+
+float AuxiliaryMethods::loadFloatNumber()
+{
+    string input = "";
+    float number = 0;
+
+    while (true)
+    {
+        getline(cin, input);
+
+        stringstream myStream(input);
+        if (myStream >> number)
+            break;
+        cout << "That is not a correct number. Pleas enter again. " << endl;
+    }
+    return number;
+}
+
+string AuxiliaryMethods::convertIntToString(int number)
+{
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+
+}

@@ -14,12 +14,12 @@ void IncomeManager::addNewIncome(){
     income = setNewIncomeData();
 
     incomes.push_back(income);
-    /*if(plikZAdresatami.dopiszAdresataDoPliku(adresat)){
-        cout << "Nowy adresat zostal dodany" << endl;
+    if(incomesFile.saveIncomeToFile(income)){
+        cout << "New income has been added" << endl;
     }
     else {
-        cout << "Blad. Nie udalo sie dodac nowego adresata do pliku." << endl;
-    }*/
+        cout << "Error, new income haven't been added properly." << endl;
+    }
     system("pause");
 }
 
@@ -27,6 +27,8 @@ Income IncomeManager::setNewIncomeData(){
     Income newIncome;
     char selection;
     Date incomeDate;
+
+    newIncome.setUserId(LOGGED_USER_ID);
 
     cout << "Is the income from today? (y/n)" << endl;
 
@@ -36,12 +38,10 @@ Income IncomeManager::setNewIncomeData(){
         if(selection == 'y'){
             incomeDate.getTodaysDate();
             newIncome.setDate(incomeDate);
-            incomeDate.showDate();
         }
         else if(selection == 'n'){
             incomeDate = specyfyIncomeDate();
             newIncome.setDate(incomeDate);
-            incomeDate.showDate();
         }
         else{
             cout << "Insert \"y\" or \"n\"" << endl;
@@ -54,9 +54,10 @@ Income IncomeManager::setNewIncomeData(){
     newIncome.setCategory(category);
 
     cout << "Enter income value (. as separator): " ;
-    float value;
-    cin >> value; //implement loadFloat in Auxiliary methods
+    float value = AuxiliaryMethods::loadFloatNumber();
     newIncome.setValue(value);
+
+    return newIncome;
 }
 
 Date IncomeManager::specyfyIncomeDate(){

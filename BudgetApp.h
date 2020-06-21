@@ -10,9 +10,10 @@ using namespace std;
 class BudgetApp{
     UserManager userManager;
     IncomeManager *incomeManager;
+    const string INCOMES_FILE_NAME;
 
 public:
-    BudgetApp(string usersFileName);
+    BudgetApp(string usersFileName, string incomesFileName);
     void registerUser();
     char selectOptionFromUserMenu();
     bool isUserLoggedIn();

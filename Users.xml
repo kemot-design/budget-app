@@ -14,4 +14,11 @@
 <Login>malarz</Login>
 <Password>pokojowy</Password>
 </User>
+<User>
+<Id>3</Id>
+<Name>A</Name>
+<Surname>A</Surname>
+<Login>a</Login>
+<Password>a</Password>
+</User>
 </Users>
