@@ -1,11 +1,13 @@
 #include "UserManager.h"
 #include "AuxiliaryMethods.h"
 #include <cstdlib>
+#include <windows.h>
 
 using namespace std;
 
-UserManager::UserManager(){
+UserManager::UserManager(string usersFileName): usersFile(usersFileName){
     loggedUserId = 0;
+    users = usersFile.loadUsersFromFile();
 }
 
 void UserManager::registerUser(){
@@ -13,7 +15,7 @@ void UserManager::registerUser(){
 
     users.push_back(user);
 
-    //plikZUzytkownikami.dopiszUzytkownikaDoPliku(uzytkownik);
+    usersFile.saveUserToFile(user);
 
     cout << endl << "Your account was successfully registered" << endl << endl;
     system("pause");
@@ -110,4 +112,33 @@ bool UserManager::isUserLoggedIn(){
         return true;
     else
         return false;
+}
+
+void UserManager::changeUserPassword(){
+    string newPassword = "";
+    system("cls");
+    cout << "New password: ";
+    newPassword = AuxiliaryMethods::loadLine();
+
+    for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
+    {
+        if (itr -> getId() == loggedUserId)
+        {
+            itr -> setPassword(newPassword);
+            cout << "Password has been changed." << endl << endl;
+            system("pause");
+        }
+    }
+    //plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
+}
+
+void UserManager::logoutUser(){
+    loggedUserId = 0;
+    system("cls");
+    cout << " You have been logged out." << endl;
+    Sleep(1500);
+}
+
+int UserManager::getLoggedUserId(){
+    return loggedUserId;
 }

@@ -4,8 +4,8 @@
 
 using namespace std;
 
-BudgetApp::BudgetApp(){
-
+BudgetApp::BudgetApp(string usersFileName, string incomesFileName): userManager(usersFileName), INCOMES_FILE_NAME(incomesFileName){
+    incomeManager = NULL;
 }
 
 char BudgetApp::selectOptionFromUserMenu(){
@@ -30,6 +30,9 @@ void BudgetApp::registerUser(){
 
 void BudgetApp::loginUser(){
     userManager.loginUser();
+    if(isUserLoggedIn()){
+        incomeManager = new IncomeManager(INCOMES_FILE_NAME, userManager.getLoggedUserId());
+    }
 }
 
 bool BudgetApp::isUserLoggedIn(){
@@ -55,4 +58,18 @@ char BudgetApp::selectOptionFromAppMenu(){
     selection = AuxiliaryMethods::loadChar();
 
     return selection;
+}
+
+void BudgetApp::changeUserPassword(){
+    userManager.changeUserPassword();
+}
+
+void BudgetApp::logoutUser(){
+    userManager.logoutUser();
+    delete incomeManager;
+    incomeManager = NULL;
+}
+
+void BudgetApp::addIncome(){
+    incomeManager -> addNewIncome();
 }

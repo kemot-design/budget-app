@@ -3,20 +3,25 @@
 
 #include <iostream>
 #include "UserManager.h"
+#include "IncomeManager.h"
 
 using namespace std;
 
 class BudgetApp{
     UserManager userManager;
+    IncomeManager *incomeManager;
+    const string INCOMES_FILE_NAME;
 
 public:
-    BudgetApp();
+    BudgetApp(string usersFileName, string incomesFileName);
     void registerUser();
     char selectOptionFromUserMenu();
     bool isUserLoggedIn();
     void loginUser();
     char selectOptionFromAppMenu();
-
+    void changeUserPassword();
+    void logoutUser();
+    void addIncome();
 
 };
 

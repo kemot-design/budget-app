@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     char selection;
-    BudgetApp budgetApp;
+    BudgetApp budgetApp("Users.xml", "Incomes.xml");
     while (true)
     {
         if (!budgetApp.isUserLoggedIn())
@@ -38,8 +38,7 @@ int main()
             switch (selection)
             {
             case '1':
-                cout << "Add income" << endl;
-                system("pause");
+                budgetApp.addIncome();
                 break;
             case '2':
                 cout << "Add expense" << endl;
@@ -58,12 +57,10 @@ int main()
                 system("pause");
                 break;
             case '6':
-                cout << "Change password" << endl;
-                system("pause");
+                budgetApp.changeUserPassword();
                 break;
             case '7':
-                cout << "Log out" << endl;
-                system("pause");
+                budgetApp.logoutUser();
                 break;
             }
         }
