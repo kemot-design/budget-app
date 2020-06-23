@@ -45,7 +45,7 @@ vector <Income> IncomesFile::loadIncomesFromFile(){
     string loadedData = "";
     int loadedIntegerData;
     float loadedFloatData;
-    Date loadeIncomedDate;
+    Date loadedIncomeDate;
     vector <Income> loadedIncomes;
 
     CMarkup fileWithIncomes;
@@ -71,8 +71,8 @@ vector <Income> IncomesFile::loadIncomesFromFile(){
 
         fileWithIncomes.FindElem("Date");
         loadedData = fileWithIncomes.GetData();
-        loadeIncomedDate.getDateFromString(loadedData);
-        loadedIncome.setDate(loadeIncomedDate);
+        loadedIncomeDate.getDateFromString(loadedData);
+        loadedIncome.setDate(loadedIncomeDate);
 
         fileWithIncomes.FindElem("Category");
         loadedData = fileWithIncomes.GetData();

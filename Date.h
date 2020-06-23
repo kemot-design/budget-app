@@ -22,6 +22,7 @@ public:
     bool isIsLaterThan(Date someDate);
     void showDate();
     void getTodaysDate();
+    void specyfyDate();
     void getDateFromString(string someDate);
     bool isValidDateFormat(string someDate);
 };

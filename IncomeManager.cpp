@@ -46,7 +46,7 @@ Income IncomeManager::setNewIncomeData(){
             newIncome.setDate(incomeDate);
         }
         else if(selection == 'n'){
-            incomeDate = specyfyIncomeDate();
+            incomeDate.specyfyDate();
             newIncome.setDate(incomeDate);
         }
         else{
@@ -64,21 +64,6 @@ Income IncomeManager::setNewIncomeData(){
     newIncome.setValue(value);
 
     return newIncome;
-}
-
-Date IncomeManager::specyfyIncomeDate(){
-    string incomeDateStr;
-    Date incomeDate;
-
-    cout << "Specyfy income date (yyyy-mm-dd" << endl;
-    incomeDateStr = AuxiliaryMethods::loadLine();
-    while(incomeDate.isValidDateFormat(incomeDateStr) == false){
-        cout << "Please enter date in correct format yyyy-mm-dd" << endl;
-        incomeDateStr = AuxiliaryMethods::loadLine();
-    }
-
-    incomeDate.getDateFromString(incomeDateStr);
-    return incomeDate;
 }
 
 int IncomeManager::getNewIncomeId(){
