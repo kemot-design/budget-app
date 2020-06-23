@@ -16,10 +16,10 @@ class IncomeManager{
 
     Income setNewIncomeData();
     Date specyfyIncomeDate();
+    int getNewIncomeId();
 
 public:
-    IncomeManager(string incomesFileName, int loggedUserID): incomesFile(incomesFileName), LOGGED_USER_ID(loggedUserID){
-    };
+    IncomeManager(string incomesFileName, int loggedUserID);
     void addNewIncome();
 
 };

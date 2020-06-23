@@ -70,3 +70,11 @@ string AuxiliaryMethods::convertIntToString(int number)
     return str;
 
 }
+
+float AuxiliaryMethods::convertStrToFloat(string numberStr){
+    float numberFloat;
+    istringstream iss(numberStr);
+    iss >> numberFloat;
+
+    return numberFloat;
+}

@@ -13,6 +13,7 @@ public:
     static int convertStrToInt(string number);
     static float loadFloatNumber();
     static string convertIntToString(int number);
+    static float convertStrToFloat(string number);
 };
 
 

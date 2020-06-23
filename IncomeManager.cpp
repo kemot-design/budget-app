@@ -6,6 +6,11 @@
 
 using namespace std;
 
+IncomeManager::IncomeManager(string incomesFileName, int loggedUserID): incomesFile(incomesFileName), LOGGED_USER_ID(loggedUserID){
+    incomes = incomesFile.loadIncomesFromFile();
+}
+
+
 void IncomeManager::addNewIncome(){
     Income income;
 
@@ -28,6 +33,7 @@ Income IncomeManager::setNewIncomeData(){
     char selection;
     Date incomeDate;
 
+    newIncome.setId(getNewIncomeId());
     newIncome.setUserId(LOGGED_USER_ID);
 
     cout << "Is the income from today? (y/n)" << endl;
@@ -73,5 +79,11 @@ Date IncomeManager::specyfyIncomeDate(){
 
     incomeDate.getDateFromString(incomeDateStr);
     return incomeDate;
+}
 
+int IncomeManager::getNewIncomeId(){
+    if (incomes.empty() == true)
+        return 1;
+    else
+        return incomes.back().getId() + 1;
 }

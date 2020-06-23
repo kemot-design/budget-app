@@ -12,6 +12,6 @@ class IncomesFile: XMLFile{
 public:
     IncomesFile(string incomesFileName): XMLFile(incomesFileName) {};
     bool saveIncomeToFile(Income income);
-    //vector <Income> loadIncomesFromFile();
+    vector <Income> loadIncomesFromFile();
 };
 #endif
