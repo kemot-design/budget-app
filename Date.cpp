@@ -45,9 +45,9 @@ void Date::showDate(){
     }
     else cout << month << "-";
     if(day < 10){
-        cout << "0" << day << endl;
+        cout << "0" << day;
     }
-    else cout << day << endl;
+    else cout << day;
 }
 
 void Date::getTodaysDate(){

@@ -44,3 +44,7 @@ string Income::getCategory(){
     return category;
 }
 
+void Income::displayIncome(){
+    date.showDate();
+    cout << " $ " << value << " (" << category << ")" << endl;
+}

@@ -83,3 +83,8 @@ void BudgetApp::addIncome(){
 void BudgetApp::addExpense(){
     expenseManager -> addNewExpense();
 }
+
+void BudgetApp::showBalance(){
+    incomeManager -> displayIncomes();
+}
+

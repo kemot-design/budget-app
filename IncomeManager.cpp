@@ -7,7 +7,7 @@
 using namespace std;
 
 IncomeManager::IncomeManager(string incomesFileName, int loggedUserID): incomesFile(incomesFileName), LOGGED_USER_ID(loggedUserID){
-    incomes = incomesFile.loadIncomesFromFile();
+    incomes = incomesFile.loadIncomesFromFile(loggedUserID);
 }
 
 
@@ -71,4 +71,11 @@ int IncomeManager::getNewIncomeId(){
         return 1;
     else
         return incomes.back().getId() + 1;
+}
+
+void IncomeManager::displayIncomes(){
+    system("cls");
+    for(int i = 0 ; i < incomes.size() ; i++){
+        incomes[i].displayIncome();
+    }
 }

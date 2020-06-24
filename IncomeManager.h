@@ -20,6 +20,7 @@ class IncomeManager{
 public:
     IncomeManager(string incomesFileName, int loggedUserID);
     void addNewIncome();
+    void displayIncomes();
 
 };
 

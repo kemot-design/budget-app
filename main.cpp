@@ -44,7 +44,7 @@ int main()
                 budgetApp.addExpense();
                 break;
             case '3':
-                cout << "current month balance" << endl;
+                budgetApp.showBalance();
                 system("pause");
                 break;
             case '4':
