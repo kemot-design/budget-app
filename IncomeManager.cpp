@@ -61,11 +61,11 @@ Income IncomeManager::setNewIncomeData(){
 
     cout << "Enter income value (. as separator): " ;
     string valueStr = AuxiliaryMethods::loadLine();
-    while(checkValueFormat(valueStr) == false){
+    while(AuxiliaryMethods::checkValueFormat(valueStr) == false){
         cout << "That is not a valid value format, try again." << endl;
         valueStr = AuxiliaryMethods::loadLine();
     }
-    valueStr = replaceComaWithPeriod(valueStr);
+    valueStr = AuxiliaryMethods::replaceComaWithDot(valueStr);
     float value = AuxiliaryMethods::convertStrToFloat(valueStr);
     newIncome.setValue(value);
 
@@ -85,22 +85,4 @@ void IncomeManager::displayIncomes(){
     }
 }
 
-bool IncomeManager::checkValueFormat(string value){
-    int letterInAscii;
-    for(int i = 0 ; i < value.length() ; i++){
-       letterInAscii = value[i];
-        if((letterInAscii < 48 || letterInAscii > 57) && letterInAscii != 44 && letterInAscii != 46) return false;
-    }
-    return true;
-}
 
-string IncomeManager::replaceComaWithPeriod(string value){
-    string correctValue = "";
-    for(int i = 0 ; i < value.length() ; i++){
-        correctValue += value[i];
-        if(value[i] == ','){
-            correctValue.replace(i,1,".");
-        }
-    }
-    return correctValue;
-}

@@ -59,7 +59,13 @@ Expense ExpenseManager::setNewExpenseData(){
     newExpense.setCategory(category);
 
     cout << "Enter expense value (. as separator): " ;
-    float value = AuxiliaryMethods::loadFloatNumber();
+    string valueStr = AuxiliaryMethods::loadLine();
+    while(AuxiliaryMethods::checkValueFormat(valueStr) == false){
+        cout << "That is not a valid value format, try again." << endl;
+        valueStr = AuxiliaryMethods::loadLine();
+    }
+    valueStr = AuxiliaryMethods::replaceComaWithDot(valueStr);
+    float value = AuxiliaryMethods::convertStrToFloat(valueStr);
     newExpense.setValue(value);
 
     return newExpense;

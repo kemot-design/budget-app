@@ -87,3 +87,23 @@ string AuxiliaryMethods::convertFloatToStr(float number){
 
     return numberStr;
 }
+
+bool AuxiliaryMethods::checkValueFormat(string value){
+    int letterInAscii;
+    for(int i = 0 ; i < value.length() ; i++){
+       letterInAscii = value[i];
+        if((letterInAscii < 48 || letterInAscii > 57) && letterInAscii != 44 && letterInAscii != 46) return false;
+    }
+    return true;
+}
+
+string AuxiliaryMethods::replaceComaWithDot(string value){
+    string correctValue = "";
+    for(int i = 0 ; i < value.length() ; i++){
+        correctValue += value[i];
+        if(value[i] == ','){
+            correctValue.replace(i,1,".");
+        }
+    }
+    return correctValue;
+}
