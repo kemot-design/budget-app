@@ -116,7 +116,7 @@ bool Date::isValidDateFormat(string someDate){
             if(i == 6){
                 month = AuxiliaryMethods::convertStrToInt(dateElement);
 
-                if(isValidMonth(month)){
+                if(isValidMonth(month, year)){
                     dateElement = "";
                 }
                 else return false;
@@ -142,12 +142,20 @@ bool Date::isValidDateFormat(string someDate){
 }
 
 bool Date::isValidYear(int yearToCheck){
-    if(yearToCheck >= 2000) return true;
+    Date currentDate;
+    currentDate.getTodaysDate();
+
+    if(yearToCheck >= 2000 && yearToCheck <= currentDate.getYear()) return true;
     return false;
 }
 
-bool Date::isValidMonth(int monthToCheck){
-    if(monthToCheck > 0 && monthToCheck < 13) return true;
+bool Date::isValidMonth(int monthToCheck, int yearToCheck){
+    Date currentDate;
+    currentDate.getTodaysDate();
+    if(monthToCheck > 0 && monthToCheck < 13){
+        if(yearToCheck < currentDate.getYear()) return true;
+        else if(yearToCheck == currentDate.getYear() && monthToCheck <= currentDate.getMonth()) return true;
+    };
     return false;
 }
 

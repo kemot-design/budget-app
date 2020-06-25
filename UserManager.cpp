@@ -136,7 +136,7 @@ void UserManager::logoutUser(){
     loggedUserId = 0;
     system("cls");
     cout << " You have been logged out." << endl;
-    Sleep(1500);
+    system("pause");
 }
 
 int UserManager::getLoggedUserId(){

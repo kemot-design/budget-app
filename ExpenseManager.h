@@ -20,6 +20,7 @@ class ExpenseManager{
 public:
     ExpenseManager(string expensesFileName, int loggedUserID);
     void addNewExpense();
+    void displayExpenses();
 
 };
 

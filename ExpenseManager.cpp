@@ -71,3 +71,10 @@ int ExpenseManager::getNewExpenseId(){
     else
         return expenses.back().getId() + 1;
 }
+
+
+void ExpenseManager::displayExpenses(){
+    for(int i = 0 ; i < expenses.size() ; i++){
+        expenses[i].displayExpense();
+    }
+}

@@ -10,7 +10,7 @@ class Date {
     int month;
     int day;
     bool isValidYear(int yearToCheck);
-    bool isValidMonth(int monthToCheck);
+    bool isValidMonth(int monthToCheck, int yearToCheck);
     bool isValidDay(int dayToCheck, int monthToCheck, int yearToCheck);
     int getNumberOfDaysInMonth(int yearToCheck, int monthToCheck);
 public:

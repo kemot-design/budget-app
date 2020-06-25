@@ -74,8 +74,8 @@ int IncomeManager::getNewIncomeId(){
 }
 
 void IncomeManager::displayIncomes(){
-    system("cls");
     for(int i = 0 ; i < incomes.size() ; i++){
         incomes[i].displayIncome();
     }
 }
+

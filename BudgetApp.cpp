@@ -85,6 +85,8 @@ void BudgetApp::addExpense(){
 }
 
 void BudgetApp::showBalance(){
+    system("cls");
     incomeManager -> displayIncomes();
+    expenseManager -> displayExpenses();
 }
 
