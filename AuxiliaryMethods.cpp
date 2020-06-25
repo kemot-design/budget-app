@@ -78,3 +78,12 @@ float AuxiliaryMethods::convertStrToFloat(string numberStr){
 
     return numberFloat;
 }
+
+string AuxiliaryMethods::convertFloatToStr(float number){
+    string numberStr;
+    stringstream ss;
+    ss << number;
+    numberStr = ss.str();
+
+    return numberStr;
+}

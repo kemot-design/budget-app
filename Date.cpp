@@ -45,9 +45,9 @@ void Date::showDate(){
     }
     else cout << month << "-";
     if(day < 10){
-        cout << "0" << day << endl;
+        cout << "0" << day;
     }
-    else cout << day << endl;
+    else cout << day;
 }
 
 void Date::getTodaysDate(){
@@ -184,4 +184,16 @@ string Date::getDate(){
     }
     else date = date + AuxiliaryMethods::convertIntToString(day);
     return date;
+}
+
+void Date::specyfyDate(){
+    string dateStr;
+
+    cout << "Specyfy date (yyyy-mm-dd)" << endl;
+    dateStr = AuxiliaryMethods::loadLine();
+    while(isValidDateFormat(dateStr) == false){
+        cout << "Please enter date in correct format yyyy-mm-dd" << endl;
+        dateStr = AuxiliaryMethods::loadLine();
+    }
+    getDateFromString(dateStr);
 }

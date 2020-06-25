@@ -14,11 +14,11 @@ bool IncomesFile::saveIncomeToFile(Income income){
         }
         incomeXML.AddElem("Income");
         incomeXML.IntoElem();
-        incomeXML.AddElem("Id", income.getId());
         incomeXML.AddElem("UserId", income.getUserId());
+        incomeXML.AddElem("Id", income.getId());
         incomeXML.AddElem("Date", income.getDate());
         incomeXML.AddElem("Category", income.getCategory());
-        incomeXML.AddElem("Value", income.getValue());
+        incomeXML.AddElem("Value", AuxiliaryMethods::convertFloatToStr(income.getValue()));
         incomeXML.Save(getFileName());
         return true;
     }
@@ -28,24 +28,24 @@ bool IncomesFile::saveIncomeToFile(Income income){
         incomeXML.IntoElem();
         incomeXML.AddElem("Income");
         incomeXML.IntoElem();
-        incomeXML.AddElem("Id", income.getId());
         incomeXML.AddElem("UserId", income.getUserId());
+        incomeXML.AddElem("Id", income.getId());
         incomeXML.AddElem("Date", income.getDate());
         incomeXML.AddElem("Category", income.getCategory());
-        incomeXML.AddElem("Value", income.getValue());
+        incomeXML.AddElem("Value", AuxiliaryMethods::convertFloatToStr(income.getValue()));
         incomeXML.Save(getFileName());
         return true;
     }
     return false;
 }
 
-vector <Income> IncomesFile::loadIncomesFromFile(){
+vector <Income> IncomesFile::loadIncomesFromFile(int loggedUserId){
 
     Income loadedIncome;
     string loadedData = "";
     int loadedIntegerData;
     float loadedFloatData;
-    Date loadeIncomedDate;
+    Date loadedIncomeDate;
     vector <Income> loadedIncomes;
 
     CMarkup fileWithIncomes;
@@ -61,31 +61,34 @@ vector <Income> IncomesFile::loadIncomesFromFile(){
     while(fileWithIncomes.FindElem("Income")){
         fileWithIncomes.IntoElem();
 
-        fileWithIncomes.FindElem("Id");
-        loadedIntegerData = AuxiliaryMethods::convertStrToInt(fileWithIncomes.GetData());
-        loadedIncome.setId(loadedIntegerData);
-
         fileWithIncomes.FindElem("UserId");
         loadedIntegerData = AuxiliaryMethods::convertStrToInt(fileWithIncomes.GetData());
-        loadedIncome.setUserId(loadedIntegerData);
+        if(loadedIntegerData == loggedUserId){
+            loadedIncome.setUserId(loadedIntegerData);
 
-        fileWithIncomes.FindElem("Date");
-        loadedData = fileWithIncomes.GetData();
-        loadeIncomedDate.getDateFromString(loadedData);
-        loadedIncome.setDate(loadeIncomedDate);
+            fileWithIncomes.FindElem("Id");
+            loadedIntegerData = AuxiliaryMethods::convertStrToInt(fileWithIncomes.GetData());
+            loadedIncome.setId(loadedIntegerData);
 
-        fileWithIncomes.FindElem("Category");
-        loadedData = fileWithIncomes.GetData();
-        loadedIncome.setCategory(loadedData);
+            fileWithIncomes.FindElem("Date");
+            loadedData = fileWithIncomes.GetData();
+            loadedIncomeDate.getDateFromString(loadedData);
+            loadedIncome.setDate(loadedIncomeDate);
 
-        fileWithIncomes.FindElem("Value");
-        loadedFloatData = AuxiliaryMethods::convertStrToFloat(fileWithIncomes.GetData());
-        loadedIncome.setValue(loadedFloatData);
+            fileWithIncomes.FindElem("Category");
+            loadedData = fileWithIncomes.GetData();
+            loadedIncome.setCategory(loadedData);
 
-        loadedIncomes.push_back(loadedIncome);
+            fileWithIncomes.FindElem("Value");
+            loadedFloatData = AuxiliaryMethods::convertStrToFloat(fileWithIncomes.GetData());
+            loadedIncome.setValue(loadedFloatData);
+
+            loadedIncomes.push_back(loadedIncome);
+        }
 
         fileWithIncomes.OutOfElem();
     }
 
     return loadedIncomes;
 }
+

@@ -7,7 +7,7 @@
 using namespace std;
 
 IncomeManager::IncomeManager(string incomesFileName, int loggedUserID): incomesFile(incomesFileName), LOGGED_USER_ID(loggedUserID){
-    incomes = incomesFile.loadIncomesFromFile();
+    incomes = incomesFile.loadIncomesFromFile(loggedUserID);
 }
 
 
@@ -46,7 +46,7 @@ Income IncomeManager::setNewIncomeData(){
             newIncome.setDate(incomeDate);
         }
         else if(selection == 'n'){
-            incomeDate = specyfyIncomeDate();
+            incomeDate.specyfyDate();
             newIncome.setDate(incomeDate);
         }
         else{
@@ -66,24 +66,16 @@ Income IncomeManager::setNewIncomeData(){
     return newIncome;
 }
 
-Date IncomeManager::specyfyIncomeDate(){
-    string incomeDateStr;
-    Date incomeDate;
-
-    cout << "Specyfy income date (yyyy-mm-dd" << endl;
-    incomeDateStr = AuxiliaryMethods::loadLine();
-    while(incomeDate.isValidDateFormat(incomeDateStr) == false){
-        cout << "Please enter date in correct format yyyy-mm-dd" << endl;
-        incomeDateStr = AuxiliaryMethods::loadLine();
-    }
-
-    incomeDate.getDateFromString(incomeDateStr);
-    return incomeDate;
-}
-
 int IncomeManager::getNewIncomeId(){
     if (incomes.empty() == true)
         return 1;
     else
         return incomes.back().getId() + 1;
+}
+
+void IncomeManager::displayIncomes(){
+    system("cls");
+    for(int i = 0 ; i < incomes.size() ; i++){
+        incomes[i].displayIncome();
+    }
 }

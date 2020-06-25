@@ -15,12 +15,12 @@ class IncomeManager{
     IncomesFile incomesFile;
 
     Income setNewIncomeData();
-    Date specyfyIncomeDate();
     int getNewIncomeId();
 
 public:
     IncomeManager(string incomesFileName, int loggedUserID);
     void addNewIncome();
+    void displayIncomes();
 
 };
 

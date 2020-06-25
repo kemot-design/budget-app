@@ -10,10 +10,13 @@ class Income{
     int id;
     int userId;
     Date date;
-    double value;
+    float value;
     string category;
 
 public:
+    void displayIncome();
+
+
     void setId(int newId);
     void setUserId(int newUserId);
     void setDate(Date newDate);

@@ -14,6 +14,8 @@ public:
     static float loadFloatNumber();
     static string convertIntToString(int number);
     static float convertStrToFloat(string number);
+    static string convertFloatToStr(float number);
+
 };
 
 

@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     char selection;
-    BudgetApp budgetApp("Users.xml", "Incomes.xml");
+    BudgetApp budgetApp("Users.xml", "Incomes.xml", "Expenses.xml");
     while (true)
     {
         if (!budgetApp.isUserLoggedIn())
@@ -41,11 +41,10 @@ int main()
                 budgetApp.addIncome();
                 break;
             case '2':
-                cout << "Add expense" << endl;
-                system("pause");
+                budgetApp.addExpense();
                 break;
             case '3':
-                cout << "current month balance" << endl;
+                budgetApp.showBalance();
                 system("pause");
                 break;
             case '4':
