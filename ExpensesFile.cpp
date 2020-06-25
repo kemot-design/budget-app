@@ -14,11 +14,11 @@ bool ExpensesFile::saveExpenseToFile(Expense expense){
         }
         expenseXML.AddElem("Expense");
         expenseXML.IntoElem();
-        expenseXML.AddElem("Id", expense.getId());
         expenseXML.AddElem("UserId", expense.getUserId());
+        expenseXML.AddElem("Id", expense.getId());
         expenseXML.AddElem("Date", expense.getDate());
         expenseXML.AddElem("Category", expense.getCategory());
-        expenseXML.AddElem("Value", expense.getValue());
+        expenseXML.AddElem("Value", AuxiliaryMethods::convertFloatToStr(expense.getValue()));
         expenseXML.Save(getFileName());
         return true;
     }
@@ -28,18 +28,18 @@ bool ExpensesFile::saveExpenseToFile(Expense expense){
         expenseXML.IntoElem();
         expenseXML.AddElem("Expense");
         expenseXML.IntoElem();
-        expenseXML.AddElem("Id", expense.getId());
         expenseXML.AddElem("UserId", expense.getUserId());
+        expenseXML.AddElem("Id", expense.getId());
         expenseXML.AddElem("Date", expense.getDate());
         expenseXML.AddElem("Category", expense.getCategory());
-        expenseXML.AddElem("Value", expense.getValue());
+        expenseXML.AddElem("Value", AuxiliaryMethods::convertFloatToStr(expense.getValue()));
         expenseXML.Save(getFileName());
         return true;
     }
     return false;
 }
 
-vector <Expense> ExpensesFile::loadExpensesFromFile(){
+vector <Expense> ExpensesFile::loadExpensesFromFile(int loggedUserId){
 
     Expense loadedExpense;
     string loadedData = "";
@@ -61,28 +61,30 @@ vector <Expense> ExpensesFile::loadExpensesFromFile(){
     while(fileWithExpenses.FindElem("Expense")){
         fileWithExpenses.IntoElem();
 
-        fileWithExpenses.FindElem("Id");
-        loadedIntegerData = AuxiliaryMethods::convertStrToInt(fileWithExpenses.GetData());
-        loadedExpense.setId(loadedIntegerData);
-
         fileWithExpenses.FindElem("UserId");
         loadedIntegerData = AuxiliaryMethods::convertStrToInt(fileWithExpenses.GetData());
-        loadedExpense.setUserId(loadedIntegerData);
+        if(loadedIntegerData == loggedUserId){
+            loadedExpense.setUserId(loadedIntegerData);
 
-        fileWithExpenses.FindElem("Date");
-        loadedData = fileWithExpenses.GetData();
-        loadedExpenseDate.getDateFromString(loadedData);
-        loadedExpense.setDate(loadedExpenseDate);
+            fileWithExpenses.FindElem("Id");
+            loadedIntegerData = AuxiliaryMethods::convertStrToInt(fileWithExpenses.GetData());
+            loadedExpense.setId(loadedIntegerData);
 
-        fileWithExpenses.FindElem("Category");
-        loadedData = fileWithExpenses.GetData();
-        loadedExpense.setCategory(loadedData);
+            fileWithExpenses.FindElem("Date");
+            loadedData = fileWithExpenses.GetData();
+            loadedExpenseDate.getDateFromString(loadedData);
+            loadedExpense.setDate(loadedExpenseDate);
 
-        fileWithExpenses.FindElem("Value");
-        loadedFloatData = AuxiliaryMethods::convertStrToFloat(fileWithExpenses.GetData());
-        loadedExpense.setValue(loadedFloatData);
+            fileWithExpenses.FindElem("Category");
+            loadedData = fileWithExpenses.GetData();
+            loadedExpense.setCategory(loadedData);
 
-        loadedExpenses.push_back(loadedExpense);
+            fileWithExpenses.FindElem("Value");
+            loadedFloatData = AuxiliaryMethods::convertStrToFloat(fileWithExpenses.GetData());
+            loadedExpense.setValue(loadedFloatData);
+
+            loadedExpenses.push_back(loadedExpense);
+        }
 
         fileWithExpenses.OutOfElem();
     }

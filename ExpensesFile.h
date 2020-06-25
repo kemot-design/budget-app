@@ -12,6 +12,6 @@ class ExpensesFile: XMLFile{
 public:
     ExpensesFile(string expensesFileName): XMLFile(expensesFileName) {};
     bool saveExpenseToFile(Expense expense);
-    vector <Expense> loadExpensesFromFile();
+    vector <Expense> loadExpensesFromFile(int loggedUserId);
 };
 #endif

@@ -6,7 +6,7 @@
 using namespace std;
 
 ExpenseManager::ExpenseManager(string expensesFileName, int loggedUserID): expensesFile(expensesFileName), LOGGED_USER_ID(loggedUserID){
-    expenses = expensesFile.loadExpensesFromFile();
+    expenses = expensesFile.loadExpensesFromFile(LOGGED_USER_ID);
 }
 
 
