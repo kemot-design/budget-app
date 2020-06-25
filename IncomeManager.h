@@ -16,6 +16,8 @@ class IncomeManager{
 
     Income setNewIncomeData();
     int getNewIncomeId();
+    bool checkValueFormat(string value);
+    string replaceComaWithPeriod(string value);
 
 public:
     IncomeManager(string incomesFileName, int loggedUserID);
