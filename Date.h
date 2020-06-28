@@ -9,6 +9,7 @@ class Date {
     int year;
     int month;
     int day;
+
     bool isValidYear(int yearToCheck);
     bool isValidMonth(int monthToCheck, int yearToCheck);
     bool isValidDay(int dayToCheck, int monthToCheck, int yearToCheck);

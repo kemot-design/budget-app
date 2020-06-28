@@ -16,6 +16,7 @@ class ExpenseManager{
 
     Expense setNewExpenseData();
     int getNewExpenseId();
+    void sortExpensesChronologically();
 
 public:
     ExpenseManager(string expensesFileName, int loggedUserID);

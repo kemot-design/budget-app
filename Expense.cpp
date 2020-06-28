@@ -1,8 +1,9 @@
 #include "Expense.h"
 #include "AuxiliaryMethods.h"
+#include <iomanip>
 
 void Expense::displayExpense(){
     cout << getDate();
-    cout << " $ " << getValue() << " (" << getCategory() << ")" << endl;
+    cout << " $ " << setprecision(2) << fixed << getValue() << " (" << getCategory() << ")" << endl;
 }
 

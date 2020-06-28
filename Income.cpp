@@ -1,5 +1,6 @@
 #include "Income.h"
 #include "AuxiliaryMethods.h"
+#include <iomanip>
 
 using namespace std;
 
@@ -46,5 +47,9 @@ string Income::getCategory(){
 
 void Income::displayIncome(){
     date.showDate();
-    cout << " $ " << value << " (" << category << ")" << endl;
+    cout << " $ " << setprecision(2) << fixed << value << " (" << category << ")" << endl;
+}
+
+Date Income::getFullDate(){
+    return date;
 }
