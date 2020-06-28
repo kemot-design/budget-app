@@ -56,10 +56,17 @@ Expense ExpenseManager::setNewExpenseData(){
     cout << "Specify expense category: " ;
     string category;
     category = AuxiliaryMethods::loadLine();
+    category = AuxiliaryMethods::setFirstLetterUppercaseRestLowercase(category);
     newExpense.setCategory(category);
 
     cout << "Enter expense value (. as separator): " ;
-    float value = AuxiliaryMethods::loadFloatNumber();
+    string valueStr = AuxiliaryMethods::loadLine();
+    while(AuxiliaryMethods::checkValueFormat(valueStr) == false){
+        cout << "That is not a valid value format, try again." << endl;
+        valueStr = AuxiliaryMethods::loadLine();
+    }
+    valueStr = AuxiliaryMethods::replaceComaWithDot(valueStr);
+    float value = AuxiliaryMethods::convertStrToFloat(valueStr);
     newExpense.setValue(value);
 
     return newExpense;
@@ -70,4 +77,37 @@ int ExpenseManager::getNewExpenseId(){
         return 1;
     else
         return expenses.back().getId() + 1;
+}
+
+
+void ExpenseManager::displayExpenses(){
+    sortExpensesChronologically();
+    cout << "EXPENSES" << endl;
+    for(int i = 0 ; i < expenses.size() ; i++){
+        expenses[i].displayExpense();
+    }
+}
+
+void ExpenseManager::sortExpensesChronologically(){
+    int numberOfDates = expenses.size();
+
+    for (int i = 0 ; i < numberOfDates - 1 ; i++)
+    {
+        for (int j = i + 1 ; j < numberOfDates ; j++)
+        {
+            if (expenses[i].getFullDate().getYear() > expenses[j].getFullDate().getYear())
+            {
+                swap(expenses[i], expenses[j]);
+            }
+            else if (expenses[i].getFullDate().getYear() == expenses[j].getFullDate().getYear() && expenses[i].getFullDate().getMonth() > expenses[j].getFullDate().getMonth())
+            {
+                swap(expenses[i], expenses[j]);
+            }
+            else if (expenses[i].getFullDate().getYear() == expenses[j].getFullDate().getYear() && expenses[i].getFullDate().getMonth() == expenses[j].getFullDate().getMonth() && expenses[i].getFullDate().getDay() > expenses[j].getFullDate().getDay())
+            {
+                swap(expenses[i], expenses[j]);
+            }
+
+        }
+    }
 }

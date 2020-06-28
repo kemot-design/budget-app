@@ -57,10 +57,17 @@ Income IncomeManager::setNewIncomeData(){
     cout << "Specify income category: " ;
     string category;
     category = AuxiliaryMethods::loadLine();
+    category = AuxiliaryMethods::setFirstLetterUppercaseRestLowercase(category);
     newIncome.setCategory(category);
 
     cout << "Enter income value (. as separator): " ;
-    float value = AuxiliaryMethods::loadFloatNumber();
+    string valueStr = AuxiliaryMethods::loadLine();
+    while(AuxiliaryMethods::checkValueFormat(valueStr) == false){
+        cout << "That is not a valid value format, try again." << endl;
+        valueStr = AuxiliaryMethods::loadLine();
+    }
+    valueStr = AuxiliaryMethods::replaceComaWithDot(valueStr);
+    float value = AuxiliaryMethods::convertStrToFloat(valueStr);
     newIncome.setValue(value);
 
     return newIncome;
@@ -74,8 +81,33 @@ int IncomeManager::getNewIncomeId(){
 }
 
 void IncomeManager::displayIncomes(){
-    system("cls");
+    sortIncomesChronologically();
+    cout << "INCOMES" << endl;
     for(int i = 0 ; i < incomes.size() ; i++){
         incomes[i].displayIncome();
+    }
+}
+
+void IncomeManager::sortIncomesChronologically(){
+    int numberOfDates = incomes.size();
+
+    for (int i = 0 ; i < numberOfDates - 1 ; i++)
+    {
+        for (int j = i + 1 ; j < numberOfDates ; j++)
+        {
+            if (incomes[i].getFullDate().getYear() > incomes[j].getFullDate().getYear())
+            {
+                swap(incomes[i], incomes[j]);
+            }
+            else if (incomes[i].getFullDate().getYear() == incomes[j].getFullDate().getYear() && incomes[i].getFullDate().getMonth() > incomes[j].getFullDate().getMonth())
+            {
+                swap(incomes[i], incomes[j]);
+            }
+            else if (incomes[i].getFullDate().getYear() == incomes[j].getFullDate().getYear() && incomes[i].getFullDate().getMonth() == incomes[j].getFullDate().getMonth() && incomes[i].getFullDate().getDay() > incomes[j].getFullDate().getDay())
+            {
+                swap(incomes[i], incomes[j]);
+            }
+
+        }
     }
 }

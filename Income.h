@@ -16,7 +16,6 @@ class Income{
 public:
     void displayIncome();
 
-
     void setId(int newId);
     void setUserId(int newUserId);
     void setDate(Date newDate);
@@ -28,7 +27,7 @@ public:
     string getDate();
     float getValue();
     string getCategory();
-
+    Date getFullDate();
 };
 
 #endif // INCOME_H

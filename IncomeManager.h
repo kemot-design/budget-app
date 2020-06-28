@@ -16,6 +16,7 @@ class IncomeManager{
 
     Income setNewIncomeData();
     int getNewIncomeId();
+    void sortIncomesChronologically();
 
 public:
     IncomeManager(string incomesFileName, int loggedUserID);

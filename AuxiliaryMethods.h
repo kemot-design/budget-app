@@ -15,6 +15,9 @@ public:
     static string convertIntToString(int number);
     static float convertStrToFloat(string number);
     static string convertFloatToStr(float number);
+    static bool checkValueFormat(string value);
+    static string replaceComaWithDot(string value);
+
 
 };
 
