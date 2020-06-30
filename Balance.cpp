@@ -54,6 +54,7 @@ void Balance::displaySpecyfiedPeriodBalance(){
     float totalIncome = 0;
     float totalExpense = 0;
 
+    system("cls");
     cout << "--------------------" << endl;
     startDate.showDate();
     cout << " - ";

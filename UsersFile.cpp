@@ -84,3 +84,29 @@ vector <User> UsersFile::loadUsersFromFile(){
 
     return loadedUsers;
 }
+
+void UsersFile::changeUserPasswordInFile(string newPassword, int loggedUserId){
+    CMarkup xml;
+    int userId = 0;
+
+    if(xml.Load(getFileName())){
+        xml.FindElem("Users");
+        xml.IntoElem();
+        while(xml.FindElem("User")){
+            xml.IntoElem();
+            xml.FindElem("Id");
+            userId = AuxiliaryMethods::convertStrToInt(xml.GetData());
+            if(userId == loggedUserId){
+                xml.FindElem("Password");
+                xml.SetData(newPassword);
+                xml.Save(getFileName());
+                return;
+            }
+            xml.OutOfElem();
+        }
+    }
+    else{
+        cout << "Something wrong with user file" << endl;
+    }
+}
+

@@ -119,6 +119,7 @@ void UserManager::changeUserPassword(){
     system("cls");
     cout << "New password: ";
     newPassword = AuxiliaryMethods::loadLine();
+    usersFile.changeUserPasswordInFile(newPassword, loggedUserId);
 
     for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
     {
@@ -129,7 +130,7 @@ void UserManager::changeUserPassword(){
             system("pause");
         }
     }
-    //plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
+
 }
 
 void UserManager::logoutUser(){
