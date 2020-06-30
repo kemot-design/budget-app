@@ -5,6 +5,7 @@
 #include "UserManager.h"
 #include "IncomeManager.h"
 #include "ExpenseManager.h"
+#include "Balance.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ class BudgetApp{
     ExpenseManager *expenseManager;
     const string INCOMES_FILE_NAME;
     const string EXPENSES_FILE_NAME;
+    Balance *balance;
 
 public:
     BudgetApp(string usersFileName, string incomesFileName, string expensesFileName);
@@ -26,7 +28,8 @@ public:
     void logoutUser();
     void addIncome();
     void addExpense();
-    void showBalance();
+    void showCurrentMonthBalance();
+    void showPreviousMonthBalance();
 
 };
 

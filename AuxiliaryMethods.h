@@ -15,6 +15,7 @@ public:
     static string convertIntToString(int number);
     static float convertStrToFloat(string number);
     static string convertFloatToStr(float number);
+    bool static isValueFormatOk(string &floatStr);
 
 };
 

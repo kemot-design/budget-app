@@ -1,6 +1,7 @@
 #include "AuxiliaryMethods.h"
 #include <sstream>
 #include <algorithm>
+#include <string>
 
 using namespace std;
 
@@ -72,9 +73,7 @@ string AuxiliaryMethods::convertIntToString(int number)
 }
 
 float AuxiliaryMethods::convertStrToFloat(string numberStr){
-    float numberFloat;
-    istringstream iss(numberStr);
-    iss >> numberFloat;
+    float numberFloat = atof(numberStr.c_str());
 
     return numberFloat;
 }
@@ -86,4 +85,19 @@ string AuxiliaryMethods::convertFloatToStr(float number){
     numberStr = ss.str();
 
     return numberStr;
+}
+
+bool AuxiliaryMethods::isValueFormatOk(string &floatStr){
+    int numLength = floatStr.length();
+    if (numLength == 0) return false;
+
+    for(int i = 0 ; i < numLength ; i++){
+        if(floatStr[i] == ','){
+            floatStr[i] = '.';
+        }
+        if((floatStr[i] < 48 || floatStr[i] > 57 || floatStr[i] == ' ') && floatStr[i] != '.'){
+            return false;
+        }
+    }
+    return true;
 }

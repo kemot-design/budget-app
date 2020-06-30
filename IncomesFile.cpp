@@ -16,7 +16,7 @@ bool IncomesFile::saveIncomeToFile(Income income){
         incomeXML.IntoElem();
         incomeXML.AddElem("UserId", income.getUserId());
         incomeXML.AddElem("Id", income.getId());
-        incomeXML.AddElem("Date", income.getDate());
+        incomeXML.AddElem("Date", income.getDateStr());
         incomeXML.AddElem("Category", income.getCategory());
         incomeXML.AddElem("Value", AuxiliaryMethods::convertFloatToStr(income.getValue()));
         incomeXML.Save(getFileName());
@@ -30,7 +30,7 @@ bool IncomesFile::saveIncomeToFile(Income income){
         incomeXML.IntoElem();
         incomeXML.AddElem("UserId", income.getUserId());
         incomeXML.AddElem("Id", income.getId());
-        incomeXML.AddElem("Date", income.getDate());
+        incomeXML.AddElem("Date", income.getDateStr());
         incomeXML.AddElem("Category", income.getCategory());
         incomeXML.AddElem("Value", AuxiliaryMethods::convertFloatToStr(income.getValue()));
         incomeXML.Save(getFileName());

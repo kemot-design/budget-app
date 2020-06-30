@@ -16,11 +16,14 @@ class IncomeManager{
 
     Income setNewIncomeData();
     int getNewIncomeId();
+    void sortIncomesChronologically();
 
 public:
     IncomeManager(string incomesFileName, int loggedUserID);
     void addNewIncome();
     void displayIncomes();
+    float displayCurrentMonthIncomes();
+    float displayPreviousMonthIncomes();
 
 };
 

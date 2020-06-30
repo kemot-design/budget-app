@@ -7,6 +7,7 @@ using namespace std;
 
 ExpenseManager::ExpenseManager(string expensesFileName, int loggedUserID): expensesFile(expensesFileName), LOGGED_USER_ID(loggedUserID){
     expenses = expensesFile.loadExpensesFromFile(LOGGED_USER_ID);
+    sortExpensesChronologically();
 }
 
 
@@ -18,6 +19,7 @@ void ExpenseManager::addNewExpense(){
     expense = setNewExpenseData();
 
     expenses.push_back(expense);
+    sortExpensesChronologically();
     if(expensesFile.saveExpenseToFile(expense)){
         cout << "New expense has been added" << endl;
     }
@@ -59,7 +61,13 @@ Expense ExpenseManager::setNewExpenseData(){
     newExpense.setCategory(category);
 
     cout << "Enter expense value (. as separator): " ;
-    float value = AuxiliaryMethods::loadFloatNumber();
+
+    string valueStr = AuxiliaryMethods::loadLine();
+    while(AuxiliaryMethods::isValueFormatOk(valueStr) == false){
+        cout << endl << "That is not a valid value format, try again!" << endl;
+        valueStr = AuxiliaryMethods::loadLine();
+    }
+    float value = AuxiliaryMethods::convertStrToFloat(valueStr);
     newExpense.setValue(value);
 
     return newExpense;
@@ -71,3 +79,55 @@ int ExpenseManager::getNewExpenseId(){
     else
         return expenses.back().getId() + 1;
 }
+
+float ExpenseManager::displayCurrentMonthExpenses(){
+    Date currentDate;
+    currentDate.getTodaysDate();
+    float totalExpense = 0;
+
+    for(int i = 0 ; i < expenses.size() ; i++){
+        if(expenses[i].getDate().getMonth() == currentDate.getMonth()){
+            expenses[i].displayIncome();
+            totalExpense += expenses[i].getValue();
+        }
+    }
+    return totalExpense;
+}
+
+float ExpenseManager::displayPreviousMonthExpenses(){
+    Date currentDate;
+    currentDate.getTodaysDate();
+    float totalExpense = 0;
+
+    for(int i = 0 ; i < expenses.size() ; i++){
+        if(expenses[i].getDate().getMonth() == currentDate.getMonth() - 1){
+            expenses[i].displayIncome();
+            totalExpense += expenses[i].getValue();
+        }
+    }
+    return totalExpense;
+}
+
+void ExpenseManager::sortExpensesChronologically(){
+    int vectorSize = expenses.size();
+
+    for (int i = 0 ; i < vectorSize - 1 ; i++)
+    {
+        for (int j = i + 1 ; j < vectorSize ; j++)
+        {
+            if (expenses[i].getDate().getYear() > expenses[j].getDate().getYear())
+            {
+                swap(expenses[i], expenses[j]);
+            }
+            else if (expenses[i].getDate().getYear() == expenses[j].getDate().getYear() && expenses[i].getDate().getMonth() > expenses[j].getDate().getMonth())
+            {
+                swap(expenses[i], expenses[j]);
+            }
+            else if (expenses[i].getDate().getYear() == expenses[j].getDate().getYear() && expenses[i].getDate().getMonth() == expenses[j].getDate().getMonth() && expenses[i].getDate().getDay() > expenses[j].getDate().getDay())
+            {
+                swap(expenses[i], expenses[j]);
+            }
+        }
+    }
+}
+
