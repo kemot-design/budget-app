@@ -3,7 +3,7 @@
 #include <iomanip>
 
 void Expense::displayExpense(){
-    cout << getDate();
+    getDate().showDate();
     cout << " $ " << setprecision(2) << fixed << getValue() << " (" << getCategory() << ")" << endl;
 }
 
