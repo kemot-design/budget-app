@@ -131,3 +131,14 @@ void ExpenseManager::sortExpensesChronologically(){
     }
 }
 
+float ExpenseManager::displaySpecyfiedPeriodExpenses(Date startDate, Date endDate){
+    float totalExpense = 0;
+
+    for(int i = 0 ; i < expenses.size() ; i++){
+        if(expenses[i].getDate().isIsLaterThan(startDate) && !expenses[i].getDate().isIsLaterThan(endDate)){
+            expenses[i].displayIncome();
+            totalExpense += expenses[i].getValue();
+        }
+    }
+    return totalExpense;
+}

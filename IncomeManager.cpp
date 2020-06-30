@@ -137,3 +137,15 @@ void IncomeManager::sortIncomesChronologically(){
         }
     }
 }
+
+float IncomeManager::displaySpecyfiedPeriodIncomes(Date startDate, Date endDate){
+    float totalIncome = 0;
+
+    for(int i = 0 ; i < incomes.size() ; i++){
+        if(incomes[i].getDate().isIsLaterThan(startDate) && !incomes[i].getDate().isIsLaterThan(endDate)){
+            incomes[i].displayIncome();
+            totalIncome += incomes[i].getValue();
+        }
+    }
+    return totalIncome;
+}

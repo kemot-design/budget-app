@@ -23,7 +23,7 @@ public:
     void addNewExpense();
     float displayCurrentMonthExpenses();
     float displayPreviousMonthExpenses();
-
+    float displaySpecyfiedPeriodExpenses(Date startDate, Date endDate);
 };
 
 

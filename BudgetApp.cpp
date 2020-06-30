@@ -95,3 +95,6 @@ void BudgetApp::showPreviousMonthBalance(){
     balance -> displayPreviousMonthBalance();
 }
 
+void BudgetApp::showSpecyfiedPeriodBalance(){
+    balance -> displaySpecyfiedPeriodBalance();
+}

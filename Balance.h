@@ -20,6 +20,7 @@ public:
     };
     void displayCurrentMonthBalance();
     void displayPreviousMonthBalance();
+    void displaySpecyfiedPeriodBalance();
 
 };
 

@@ -24,6 +24,7 @@ public:
     void displayIncomes();
     float displayCurrentMonthIncomes();
     float displayPreviousMonthIncomes();
+    float displaySpecyfiedPeriodIncomes(Date startDate, Date endDate);
 
 };
 

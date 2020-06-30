@@ -50,8 +50,7 @@ int main()
                 budgetApp.showPreviousMonthBalance();
                 break;
             case '5':
-                cout << "Selected month balance" << endl;
-                system("pause");
+                budgetApp.showSpecyfiedPeriodBalance();
                 break;
             case '6':
                 budgetApp.changeUserPassword();
