@@ -21,8 +21,10 @@ class ExpenseManager{
 public:
     ExpenseManager(string expensesFileName, int loggedUserID);
     void addNewExpense();
-    void displayExpenses();
 
+    float displayCurrentMonthExpenses();
+    float displayPreviousMonthExpenses();
+    float displaySpecyfiedPeriodExpenses(Date startDate, Date endDate);
 };
 
 

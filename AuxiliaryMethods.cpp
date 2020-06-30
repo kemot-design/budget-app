@@ -1,6 +1,7 @@
 #include "AuxiliaryMethods.h"
 #include <sstream>
 #include <algorithm>
+#include <string>
 
 using namespace std;
 
@@ -72,9 +73,7 @@ string AuxiliaryMethods::convertIntToString(int number)
 }
 
 float AuxiliaryMethods::convertStrToFloat(string numberStr){
-    float numberFloat;
-    istringstream iss(numberStr);
-    iss >> numberFloat;
+    float numberFloat = atof(numberStr.c_str());
 
     return numberFloat;
 }
@@ -88,22 +87,17 @@ string AuxiliaryMethods::convertFloatToStr(float number){
     return numberStr;
 }
 
-bool AuxiliaryMethods::checkValueFormat(string value){
-    int letterInAscii;
-    for(int i = 0 ; i < value.length() ; i++){
-       letterInAscii = value[i];
-        if((letterInAscii < 48 || letterInAscii > 57) && letterInAscii != 44 && letterInAscii != 46) return false;
-    }
-    return true;
-}
+bool AuxiliaryMethods::isValueFormatOk(string &floatStr){
+    int numLength = floatStr.length();
+    if (numLength == 0) return false;
 
-string AuxiliaryMethods::replaceComaWithDot(string value){
-    string correctValue = "";
-    for(int i = 0 ; i < value.length() ; i++){
-        correctValue += value[i];
-        if(value[i] == ','){
-            correctValue.replace(i,1,".");
+    for(int i = 0 ; i < numLength ; i++){
+        if(floatStr[i] == ','){
+            floatStr[i] = '.';
+        }
+        if((floatStr[i] < 48 || floatStr[i] > 57 || floatStr[i] == ' ') && floatStr[i] != '.'){
+            return false;
         }
     }
-    return correctValue;
+    return true;
 }

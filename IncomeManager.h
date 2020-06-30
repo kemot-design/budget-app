@@ -22,6 +22,9 @@ public:
     IncomeManager(string incomesFileName, int loggedUserID);
     void addNewIncome();
     void displayIncomes();
+    float displayCurrentMonthIncomes();
+    float displayPreviousMonthIncomes();
+    float displaySpecyfiedPeriodIncomes(Date startDate, Date endDate);
 
 };
 

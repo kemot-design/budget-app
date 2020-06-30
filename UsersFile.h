@@ -13,5 +13,6 @@ public:
     UsersFile(string usersFileName): XMLFile(usersFileName) {};
     void saveUserToFile(User user);
     vector <User> loadUsersFromFile();
+    void changeUserPasswordInFile(string newPassword, int loggedUserId);
 };
 #endif

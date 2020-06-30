@@ -16,7 +16,7 @@ bool ExpensesFile::saveExpenseToFile(Expense expense){
         expenseXML.IntoElem();
         expenseXML.AddElem("UserId", expense.getUserId());
         expenseXML.AddElem("Id", expense.getId());
-        expenseXML.AddElem("Date", expense.getDate());
+        expenseXML.AddElem("Date", expense.getDateStr());
         expenseXML.AddElem("Category", expense.getCategory());
         expenseXML.AddElem("Value", AuxiliaryMethods::convertFloatToStr(expense.getValue()));
         expenseXML.Save(getFileName());
@@ -30,7 +30,7 @@ bool ExpensesFile::saveExpenseToFile(Expense expense){
         expenseXML.IntoElem();
         expenseXML.AddElem("UserId", expense.getUserId());
         expenseXML.AddElem("Id", expense.getId());
-        expenseXML.AddElem("Date", expense.getDate());
+        expenseXML.AddElem("Date", expense.getDateStr());
         expenseXML.AddElem("Category", expense.getCategory());
         expenseXML.AddElem("Value", AuxiliaryMethods::convertFloatToStr(expense.getValue()));
         expenseXML.Save(getFileName());

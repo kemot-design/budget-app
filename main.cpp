@@ -44,16 +44,13 @@ int main()
                 budgetApp.addExpense();
                 break;
             case '3':
-                budgetApp.showBalance();
-                system("pause");
+                budgetApp.showCurrentMonthBalance();
                 break;
             case '4':
-                cout << "Previous month balance" << endl;
-                system("pause");
+                budgetApp.showPreviousMonthBalance();
                 break;
             case '5':
-                cout << "Selected month balance" << endl;
-                system("pause");
+                budgetApp.showSpecyfiedPeriodBalance();
                 break;
             case '6':
                 budgetApp.changeUserPassword();

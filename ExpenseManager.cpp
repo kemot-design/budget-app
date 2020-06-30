@@ -7,6 +7,7 @@ using namespace std;
 
 ExpenseManager::ExpenseManager(string expensesFileName, int loggedUserID): expensesFile(expensesFileName), LOGGED_USER_ID(loggedUserID){
     expenses = expensesFile.loadExpensesFromFile(LOGGED_USER_ID);
+    sortExpensesChronologically();
 }
 
 
@@ -18,6 +19,7 @@ void ExpenseManager::addNewExpense(){
     expense = setNewExpenseData();
 
     expenses.push_back(expense);
+    sortExpensesChronologically();
     if(expensesFile.saveExpenseToFile(expense)){
         cout << "New expense has been added" << endl;
     }
@@ -60,12 +62,12 @@ Expense ExpenseManager::setNewExpenseData(){
     newExpense.setCategory(category);
 
     cout << "Enter expense value (. as separator): " ;
+
     string valueStr = AuxiliaryMethods::loadLine();
-    while(AuxiliaryMethods::checkValueFormat(valueStr) == false){
-        cout << "That is not a valid value format, try again." << endl;
+    while(AuxiliaryMethods::isValueFormatOk(valueStr) == false){
+        cout << endl << "That is not a valid value format, try again!" << endl;
         valueStr = AuxiliaryMethods::loadLine();
     }
-    valueStr = AuxiliaryMethods::replaceComaWithDot(valueStr);
     float value = AuxiliaryMethods::convertStrToFloat(valueStr);
     newExpense.setValue(value);
 
@@ -79,35 +81,65 @@ int ExpenseManager::getNewExpenseId(){
         return expenses.back().getId() + 1;
 }
 
+float ExpenseManager::displayCurrentMonthExpenses(){
+    Date currentDate;
+    currentDate.getTodaysDate();
+    float totalExpense = 0;
 
-void ExpenseManager::displayExpenses(){
-    sortExpensesChronologically();
-    cout << "EXPENSES" << endl;
     for(int i = 0 ; i < expenses.size() ; i++){
-        expenses[i].displayExpense();
+        if(expenses[i].getDate().getMonth() == currentDate.getMonth()){
+            expenses[i].displayIncome();
+            totalExpense += expenses[i].getValue();
+        }
     }
+    return totalExpense;
+}
+
+float ExpenseManager::displayPreviousMonthExpenses(){
+    Date currentDate;
+    currentDate.getTodaysDate();
+    float totalExpense = 0;
+
+    for(int i = 0 ; i < expenses.size() ; i++){
+        if(expenses[i].getDate().getMonth() == currentDate.getMonth() - 1){
+            expenses[i].displayIncome();
+            totalExpense += expenses[i].getValue();
+        }
+    }
+    return totalExpense;
 }
 
 void ExpenseManager::sortExpensesChronologically(){
-    int numberOfDates = expenses.size();
+    int vectorSize = expenses.size();
 
-    for (int i = 0 ; i < numberOfDates - 1 ; i++)
+    for (int i = 0 ; i < vectorSize - 1 ; i++)
     {
-        for (int j = i + 1 ; j < numberOfDates ; j++)
+        for (int j = i + 1 ; j < vectorSize ; j++)
         {
-            if (expenses[i].getFullDate().getYear() > expenses[j].getFullDate().getYear())
+            if (expenses[i].getDate().getYear() > expenses[j].getDate().getYear())
             {
                 swap(expenses[i], expenses[j]);
             }
-            else if (expenses[i].getFullDate().getYear() == expenses[j].getFullDate().getYear() && expenses[i].getFullDate().getMonth() > expenses[j].getFullDate().getMonth())
+            else if (expenses[i].getDate().getYear() == expenses[j].getDate().getYear() && expenses[i].getDate().getMonth() > expenses[j].getDate().getMonth())
             {
                 swap(expenses[i], expenses[j]);
             }
-            else if (expenses[i].getFullDate().getYear() == expenses[j].getFullDate().getYear() && expenses[i].getFullDate().getMonth() == expenses[j].getFullDate().getMonth() && expenses[i].getFullDate().getDay() > expenses[j].getFullDate().getDay())
+            else if (expenses[i].getDate().getYear() == expenses[j].getDate().getYear() && expenses[i].getDate().getMonth() == expenses[j].getDate().getMonth() && expenses[i].getDate().getDay() > expenses[j].getDate().getDay())
             {
                 swap(expenses[i], expenses[j]);
             }
-
         }
     }
+}
+
+float ExpenseManager::displaySpecyfiedPeriodExpenses(Date startDate, Date endDate){
+    float totalExpense = 0;
+
+    for(int i = 0 ; i < expenses.size() ; i++){
+        if(expenses[i].getDate().isIsLaterThan(startDate) && !expenses[i].getDate().isIsLaterThan(endDate)){
+            expenses[i].displayIncome();
+            totalExpense += expenses[i].getValue();
+        }
+    }
+    return totalExpense;
 }

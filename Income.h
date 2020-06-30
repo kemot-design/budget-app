@@ -24,10 +24,11 @@ public:
 
     int getId();
     int getUserId();
-    string getDate();
+    string getDateStr();
     float getValue();
     string getCategory();
-    Date getFullDate();
+    Date getDate();
+
 };
 
 #endif // INCOME_H

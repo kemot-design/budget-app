@@ -36,6 +36,7 @@ void BudgetApp::loginUser(){
     if(isUserLoggedIn()){
         incomeManager = new IncomeManager(INCOMES_FILE_NAME, userManager.getLoggedUserId());
         expenseManager = new ExpenseManager(EXPENSES_FILE_NAME, userManager.getLoggedUserId());
+        balance = new Balance(incomeManager, expenseManager);
     }
 }
 
@@ -74,6 +75,8 @@ void BudgetApp::logoutUser(){
     incomeManager = NULL;
     delete expenseManager;
     expenseManager = NULL;
+    delete balance;
+    balance = NULL;
 }
 
 void BudgetApp::addIncome(){
@@ -84,9 +87,14 @@ void BudgetApp::addExpense(){
     expenseManager -> addNewExpense();
 }
 
-void BudgetApp::showBalance(){
-    system("cls");
-    incomeManager -> displayIncomes();
-    expenseManager -> displayExpenses();
+void BudgetApp::showCurrentMonthBalance(){
+    balance -> displayCurrentMonthBalance();
 }
 
+void BudgetApp::showPreviousMonthBalance(){
+    balance -> displayPreviousMonthBalance();
+}
+
+void BudgetApp::showSpecyfiedPeriodBalance(){
+    balance -> displaySpecyfiedPeriodBalance();
+}

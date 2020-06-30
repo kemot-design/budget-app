@@ -32,7 +32,7 @@ int Income::getUserId(){
     return userId;
 }
 
-string Income::getDate(){
+string Income::getDateStr(){
     string dateStr = date.getDate();
     return dateStr;
 }
@@ -50,6 +50,6 @@ void Income::displayIncome(){
     cout << " $ " << setprecision(2) << fixed << value << " (" << category << ")" << endl;
 }
 
-Date Income::getFullDate(){
+Date Income::getDate(){
     return date;
 }
