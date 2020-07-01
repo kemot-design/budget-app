@@ -9,6 +9,7 @@ INCOMES_FILE_NAME(incomesFileName), EXPENSES_FILE_NAME(expensesFileName){
 
     incomeManager = NULL;
     expenseManager = NULL;
+    balance = NULL;
 }
 
 char BudgetApp::selectOptionFromUserMenu(){

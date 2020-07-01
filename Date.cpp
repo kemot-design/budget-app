@@ -24,7 +24,7 @@ int Date::getDay(){
     return day;
 }
 
-bool Date::isIsLaterThan(Date someDate){
+bool Date::isItLaterThan(Date someDate){
     if(year > someDate.year) return true;
     else if(year < someDate.year) return false;
     else{
@@ -36,6 +36,11 @@ bool Date::isIsLaterThan(Date someDate){
             else return false;
         }
     }
+}
+
+bool Date::isItSameDayAs(Date someDate){
+    if(year == someDate.year && month == someDate.getMonth() && day == someDate.getDay()) return true;
+    else return false;
 }
 
 void Date::showDate(){

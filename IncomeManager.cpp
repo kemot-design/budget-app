@@ -13,15 +13,15 @@ IncomeManager::IncomeManager(string incomesFileName, int loggedUserID): incomesF
 
 
 void IncomeManager::addNewIncome(){
-    Income income;
+    Income newIncome;
 
     system("cls");
     cout << " >>> ADDING NEW INCOME <<<" << endl << endl;
-    income = setNewIncomeData();
+    newIncome = setNewIncomeData();
 
-    incomes.push_back(income);
+    incomes.push_back(newIncome);
     sortIncomesChronologically();
-    if(incomesFile.saveIncomeToFile(income)){
+    if(incomesFile.saveIncomeToFile(newIncome)){
         cout << "New income has been added" << endl;
     }
     else {
@@ -79,15 +79,17 @@ int IncomeManager::getNewIncomeId(){
     if (incomes.empty() == true)
         return 1;
     else
-        return incomes.back().getId() + 1;
+        return checkBiggestId() + 1;
 }
 
-void IncomeManager::displayIncomes(){
-    sortIncomesChronologically();
-    cout << "INCOMES" << endl;
+int IncomeManager::checkBiggestId(){
+    int biggestId = 0;
     for(int i = 0 ; i < incomes.size() ; i++){
-        incomes[i].displayIncome();
+        if(incomes[i].getId() > biggestId){
+            biggestId = incomes[i].getId();
+        }
     }
+    return biggestId;
 }
 
 float IncomeManager::displayCurrentMonthIncomes(){
@@ -145,7 +147,7 @@ float IncomeManager::displaySpecyfiedPeriodIncomes(Date startDate, Date endDate)
     float totalIncome = 0;
 
     for(int i = 0 ; i < incomes.size() ; i++){
-        if(incomes[i].getDate().isIsLaterThan(startDate) && !incomes[i].getDate().isIsLaterThan(endDate)){
+        if((incomes[i].getDate().isItLaterThan(startDate) && !incomes[i].getDate().isItLaterThan(endDate)) || incomes[i].getDate().isItSameDayAs(startDate)){
             incomes[i].displayIncome();
             totalIncome += incomes[i].getValue();
         }

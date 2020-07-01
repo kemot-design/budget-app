@@ -5,35 +5,34 @@
 using namespace std;
 
 void UsersFile::saveUserToFile(User user){
-    CMarkup xml;
+    CMarkup fileWithUsers;
 
-    if(xml.Load(getFileName())){
-        xml.FindElem("Users");
-        xml.IntoElem();
-        while(xml.FindElem("User")){
-
+    if(fileWithUsers.Load(getFileName())){
+        fileWithUsers.FindElem("Users");
+        fileWithUsers.IntoElem();
+        while(fileWithUsers.FindElem("User")){
         }
-        xml.AddElem("User");
-        xml.IntoElem();
-        xml.AddElem("Id", user.getId());
-        xml.AddElem("Name", user.getName());
-        xml.AddElem("Surname", user.getSurname());
-        xml.AddElem("Login", user.getLogin());
-        xml.AddElem("Password", user.getPassword());
-        xml.Save(getFileName());
+        fileWithUsers.AddElem("User");
+        fileWithUsers.IntoElem();
+        fileWithUsers.AddElem("Id", user.getId());
+        fileWithUsers.AddElem("Name", user.getName());
+        fileWithUsers.AddElem("Surname", user.getSurname());
+        fileWithUsers.AddElem("Login", user.getLogin());
+        fileWithUsers.AddElem("Password", user.getPassword());
+        fileWithUsers.Save(getFileName());
     }
     else{
-        xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
-        xml.AddElem("Users");
-        xml.IntoElem();
-        xml.AddElem("User");
-        xml.IntoElem();
-        xml.AddElem("Id", user.getId());
-        xml.AddElem("Name", user.getName());
-        xml.AddElem("Surname", user.getSurname());
-        xml.AddElem("Login", user.getLogin());
-        xml.AddElem("Password", user.getPassword());
-        xml.Save(getFileName());
+        fileWithUsers.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+        fileWithUsers.AddElem("Users");
+        fileWithUsers.IntoElem();
+        fileWithUsers.AddElem("User");
+        fileWithUsers.IntoElem();
+        fileWithUsers.AddElem("Id", user.getId());
+        fileWithUsers.AddElem("Name", user.getName());
+        fileWithUsers.AddElem("Surname", user.getSurname());
+        fileWithUsers.AddElem("Login", user.getLogin());
+        fileWithUsers.AddElem("Password", user.getPassword());
+        fileWithUsers.Save(getFileName());
     }
 }
 
@@ -86,23 +85,23 @@ vector <User> UsersFile::loadUsersFromFile(){
 }
 
 void UsersFile::changeUserPasswordInFile(string newPassword, int loggedUserId){
-    CMarkup xml;
+    CMarkup fileWithUsers;
     int userId = 0;
 
-    if(xml.Load(getFileName())){
-        xml.FindElem("Users");
-        xml.IntoElem();
-        while(xml.FindElem("User")){
-            xml.IntoElem();
-            xml.FindElem("Id");
-            userId = AuxiliaryMethods::convertStrToInt(xml.GetData());
+    if(fileWithUsers.Load(getFileName())){
+        fileWithUsers.FindElem("Users");
+        fileWithUsers.IntoElem();
+        while(fileWithUsers.FindElem("User")){
+            fileWithUsers.IntoElem();
+            fileWithUsers.FindElem("Id");
+            userId = AuxiliaryMethods::convertStrToInt(fileWithUsers.GetData());
             if(userId == loggedUserId){
-                xml.FindElem("Password");
-                xml.SetData(newPassword);
-                xml.Save(getFileName());
+                fileWithUsers.FindElem("Password");
+                fileWithUsers.SetData(newPassword);
+                fileWithUsers.Save(getFileName());
                 return;
             }
-            xml.OutOfElem();
+            fileWithUsers.OutOfElem();
         }
     }
     else{

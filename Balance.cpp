@@ -18,9 +18,11 @@ void Balance::displayCurrentMonthBalance(){
     totalIncome = incomeManager -> displayCurrentMonthIncomes();
     cout << endl << "Expenses" << endl;
     totalExpense = expenseManager -> displayCurrentMonthExpenses();
-    cout << endl << "Total incomes: " << totalIncome << " $" << endl;
+    cout<< "--------------------" << endl;
+    cout << "Total incomes: " << totalIncome << " $" << endl;
     cout << "Total expense: " << totalExpense << " $" << endl;
-    cout << "Current month balance: " << totalIncome - totalExpense << " $" << endl;
+    cout<< "--------------------" << endl;
+    cout << "Balance: " << totalIncome - totalExpense << " $" << endl;
     system("pause");
 }
 
@@ -36,9 +38,11 @@ void Balance::displayPreviousMonthBalance(){
     totalIncome = incomeManager -> displayPreviousMonthIncomes();
     cout << endl << "Expenses" << endl;
     totalExpense = expenseManager -> displayPreviousMonthExpenses();
-    cout << endl << "Total incomes: " << totalIncome << " $" << endl;
+    cout<< "--------------------" << endl;
+    cout << "Total incomes: " << totalIncome << " $" << endl;
     cout << "Total expense: " << totalExpense << " $" << endl;
-    cout << "Current month balance: " << totalIncome - totalExpense << " $" << endl;
+    cout<< "--------------------" << endl;
+    cout << "Balance: " << totalIncome - totalExpense << " $" << endl;
     system("pause");
 }
 
@@ -65,11 +69,11 @@ void Balance::displaySpecyfiedPeriodBalance(){
     totalIncome = incomeManager -> displaySpecyfiedPeriodIncomes(startDate, endDate);
     cout << endl << "Expenses" << endl;
     totalExpense = expenseManager -> displaySpecyfiedPeriodExpenses(startDate, endDate);
-    cout << endl << "Total incomes: " << totalIncome << " $" << endl;
+    cout << "--------------------" << endl;
+    cout << "Total incomes: " << totalIncome << " $" << endl;
     cout << "Total expense: " << totalExpense << " $" << endl;
-    cout << "Current month balance: " << totalIncome - totalExpense << " $" << endl;
+    cout << "--------------------" << endl;
+    cout << "Balance: " << totalIncome - totalExpense << " $" << endl;
     system("pause");
-
-
 }
 

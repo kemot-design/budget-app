@@ -20,7 +20,8 @@ public:
     int getMonth();
     int getDay();
     string getDate();
-    bool isIsLaterThan(Date someDate);
+    bool isItLaterThan(Date someDate);
+    bool isItSameDayAs(Date someDate);
     void showDate();
     void getTodaysDate();
     void specyfyDate();

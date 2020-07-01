@@ -78,7 +78,17 @@ int ExpenseManager::getNewExpenseId(){
     if (expenses.empty() == true)
         return 1;
     else
-        return expenses.back().getId() + 1;
+        return checkBiggestId() + 1;
+}
+
+int ExpenseManager::checkBiggestId(){
+    int biggestId = 0;
+    for(int i = 0 ; i < expenses.size() ; i++){
+        if(expenses[i].getId() > biggestId){
+            biggestId = expenses[i].getId();
+        }
+    }
+    return biggestId;
 }
 
 float ExpenseManager::displayCurrentMonthExpenses(){
@@ -136,7 +146,7 @@ float ExpenseManager::displaySpecyfiedPeriodExpenses(Date startDate, Date endDat
     float totalExpense = 0;
 
     for(int i = 0 ; i < expenses.size() ; i++){
-        if(expenses[i].getDate().isIsLaterThan(startDate) && !expenses[i].getDate().isIsLaterThan(endDate)){
+        if((expenses[i].getDate().isItLaterThan(startDate) && !expenses[i].getDate().isItLaterThan(endDate)) || expenses[i].getDate().isItSameDayAs(startDate)){
             expenses[i].displayIncome();
             totalExpense += expenses[i].getValue();
         }

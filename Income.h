@@ -15,7 +15,6 @@ class Income{
 
 public:
     void displayIncome();
-
     void setId(int newId);
     void setUserId(int newUserId);
     void setDate(Date newDate);
