@@ -20,6 +20,7 @@ bool ExpensesFile::saveExpenseToFile(Expense expense){
         expenseXML.AddElem("Category", expense.getCategory());
         expenseXML.AddElem("Value", AuxiliaryMethods::convertFloatToStr(expense.getValue()));
         expenseXML.Save(getFileName());
+        lastExpenseId++;
         return true;
     }
     else{
@@ -34,6 +35,7 @@ bool ExpensesFile::saveExpenseToFile(Expense expense){
         expenseXML.AddElem("Category", expense.getCategory());
         expenseXML.AddElem("Value", AuxiliaryMethods::convertFloatToStr(expense.getValue()));
         expenseXML.Save(getFileName());
+        lastExpenseId++;
         return true;
     }
     return false;
@@ -69,6 +71,7 @@ vector <Expense> ExpensesFile::loadExpensesFromFile(int loggedUserId){
             fileWithExpenses.FindElem("Id");
             loadedIntegerData = AuxiliaryMethods::convertStrToInt(fileWithExpenses.GetData());
             loadedExpense.setId(loadedIntegerData);
+            lastExpenseId = loadedIntegerData;
 
             fileWithExpenses.FindElem("Date");
             loadedData = fileWithExpenses.GetData();
@@ -85,9 +88,18 @@ vector <Expense> ExpensesFile::loadExpensesFromFile(int loggedUserId){
 
             loadedExpenses.push_back(loadedExpense);
         }
+        else{
+            fileWithExpenses.FindElem("Id");
+            loadedIntegerData = AuxiliaryMethods::convertStrToInt(fileWithExpenses.GetData());
+            lastExpenseId = loadedIntegerData;
+        }
 
         fileWithExpenses.OutOfElem();
     }
 
     return loadedExpenses;
+}
+
+int ExpensesFile::getLastExpenseId(){
+    return lastExpenseId;
 }

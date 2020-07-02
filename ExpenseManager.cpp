@@ -34,7 +34,7 @@ Expense ExpenseManager::setNewExpenseData(){
     char selection;
     Date expenseDate;
 
-    newExpense.setId(getNewExpenseId());
+    newExpense.setId(expensesFile.getLastExpenseId() + 1);
     newExpense.setUserId(LOGGED_USER_ID);
 
     cout << "Is the expense from today? (y/n)" << endl;
@@ -72,23 +72,6 @@ Expense ExpenseManager::setNewExpenseData(){
     newExpense.setValue(value);
 
     return newExpense;
-}
-
-int ExpenseManager::getNewExpenseId(){
-    if (expenses.empty() == true)
-        return 1;
-    else
-        return checkBiggestId() + 1;
-}
-
-int ExpenseManager::checkBiggestId(){
-    int biggestId = 0;
-    for(int i = 0 ; i < expenses.size() ; i++){
-        if(expenses[i].getId() > biggestId){
-            biggestId = expenses[i].getId();
-        }
-    }
-    return biggestId;
 }
 
 float ExpenseManager::displayCurrentMonthExpenses(){
