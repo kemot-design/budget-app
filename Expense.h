@@ -2,15 +2,14 @@
 #define EXPENSE_H
 
 #include <iostream>
-#include "Date.h"
-#include "Income.h"
+#include "MoneyOperation.h"
+
 
 using namespace std;
 
-class Expense: public Income{
+class Expense: public MoneyOperation{
 
 public:
-    void displayExpense();
 
 };
 

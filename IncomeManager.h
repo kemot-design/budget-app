@@ -15,8 +15,6 @@ class IncomeManager{
     IncomesFile incomesFile;
 
     Income setNewIncomeData();
-    int getNewIncomeId();
-    int checkBiggestId();
     void sortIncomesChronologically();
 
 public:

@@ -23,6 +23,7 @@ void Balance::displayCurrentMonthBalance(){
     cout << "Total expense: " << totalExpense << " $" << endl;
     cout<< "--------------------" << endl;
     cout << "Balance: " << totalIncome - totalExpense << " $" << endl;
+    cout << "--------------------" << endl;
     system("pause");
 }
 
@@ -43,6 +44,7 @@ void Balance::displayPreviousMonthBalance(){
     cout << "Total expense: " << totalExpense << " $" << endl;
     cout<< "--------------------" << endl;
     cout << "Balance: " << totalIncome - totalExpense << " $" << endl;
+    cout << "--------------------" << endl;
     system("pause");
 }
 
@@ -74,6 +76,7 @@ void Balance::displaySpecyfiedPeriodBalance(){
     cout << "Total expense: " << totalExpense << " $" << endl;
     cout << "--------------------" << endl;
     cout << "Balance: " << totalIncome - totalExpense << " $" << endl;
+    cout << "--------------------" << endl;
     system("pause");
 }
 

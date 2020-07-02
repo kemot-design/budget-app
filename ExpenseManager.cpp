@@ -98,7 +98,7 @@ float ExpenseManager::displayCurrentMonthExpenses(){
 
     for(int i = 0 ; i < expenses.size() ; i++){
         if(expenses[i].getDate().getMonth() == currentDate.getMonth()){
-            expenses[i].displayIncome();
+            expenses[i].displayOperation();
             totalExpense += expenses[i].getValue();
         }
     }
@@ -112,7 +112,7 @@ float ExpenseManager::displayPreviousMonthExpenses(){
 
     for(int i = 0 ; i < expenses.size() ; i++){
         if(expenses[i].getDate().getMonth() == currentDate.getMonth() - 1){
-            expenses[i].displayIncome();
+            expenses[i].displayOperation();
             totalExpense += expenses[i].getValue();
         }
     }
@@ -147,7 +147,7 @@ float ExpenseManager::displaySpecyfiedPeriodExpenses(Date startDate, Date endDat
 
     for(int i = 0 ; i < expenses.size() ; i++){
         if((expenses[i].getDate().isItLaterThan(startDate) && !expenses[i].getDate().isItLaterThan(endDate)) || expenses[i].getDate().isItSameDayAs(startDate)){
-            expenses[i].displayIncome();
+            expenses[i].displayOperation();
             totalExpense += expenses[i].getValue();
         }
     }

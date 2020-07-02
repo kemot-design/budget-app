@@ -2,31 +2,13 @@
 #define INCOME_H
 
 #include <iostream>
-#include "Date.h"
+#include "MoneyOperation.h"
 
 using namespace std;
 
-class Income{
-    int id;
-    int userId;
-    Date date;
-    float value;
-    string category;
+class Income: public MoneyOperation{
 
 public:
-    void displayIncome();
-    void setId(int newId);
-    void setUserId(int newUserId);
-    void setDate(Date newDate);
-    void setValue(float newValue);
-    void setCategory(string newCategory);
-
-    int getId();
-    int getUserId();
-    string getDateStr();
-    float getValue();
-    string getCategory();
-    Date getDate();
 
 };
 
