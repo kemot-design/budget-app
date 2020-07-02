@@ -34,7 +34,7 @@ Expense ExpenseManager::setNewExpenseData(){
     char selection;
     Date expenseDate;
 
-    newExpense.setId(getNewExpenseId());
+    newExpense.setId(expensesFile.getLastExpenseId() + 1);
     newExpense.setUserId(LOGGED_USER_ID);
 
     cout << "Is the expense from today? (y/n)" << endl;
@@ -74,23 +74,6 @@ Expense ExpenseManager::setNewExpenseData(){
     return newExpense;
 }
 
-int ExpenseManager::getNewExpenseId(){
-    if (expenses.empty() == true)
-        return 1;
-    else
-        return checkBiggestId() + 1;
-}
-
-int ExpenseManager::checkBiggestId(){
-    int biggestId = 0;
-    for(int i = 0 ; i < expenses.size() ; i++){
-        if(expenses[i].getId() > biggestId){
-            biggestId = expenses[i].getId();
-        }
-    }
-    return biggestId;
-}
-
 float ExpenseManager::displayCurrentMonthExpenses(){
     Date currentDate;
     currentDate.getTodaysDate();
@@ -98,7 +81,7 @@ float ExpenseManager::displayCurrentMonthExpenses(){
 
     for(int i = 0 ; i < expenses.size() ; i++){
         if(expenses[i].getDate().getMonth() == currentDate.getMonth()){
-            expenses[i].displayIncome();
+            expenses[i].displayOperation();
             totalExpense += expenses[i].getValue();
         }
     }
@@ -112,7 +95,7 @@ float ExpenseManager::displayPreviousMonthExpenses(){
 
     for(int i = 0 ; i < expenses.size() ; i++){
         if(expenses[i].getDate().getMonth() == currentDate.getMonth() - 1){
-            expenses[i].displayIncome();
+            expenses[i].displayOperation();
             totalExpense += expenses[i].getValue();
         }
     }
@@ -147,7 +130,7 @@ float ExpenseManager::displaySpecyfiedPeriodExpenses(Date startDate, Date endDat
 
     for(int i = 0 ; i < expenses.size() ; i++){
         if((expenses[i].getDate().isItLaterThan(startDate) && !expenses[i].getDate().isItLaterThan(endDate)) || expenses[i].getDate().isItSameDayAs(startDate)){
-            expenses[i].displayIncome();
+            expenses[i].displayOperation();
             totalExpense += expenses[i].getValue();
         }
     }

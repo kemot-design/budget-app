@@ -35,7 +35,7 @@ Income IncomeManager::setNewIncomeData(){
     char selection;
     Date incomeDate;
 
-    newIncome.setId(getNewIncomeId());
+    newIncome.setId(incomesFile.getLastIncomeId() + 1);
     newIncome.setUserId(LOGGED_USER_ID);
 
     cout << "Is the income from today? (y/n)" << endl;
@@ -75,23 +75,6 @@ Income IncomeManager::setNewIncomeData(){
     return newIncome;
 }
 
-int IncomeManager::getNewIncomeId(){
-    if (incomes.empty() == true)
-        return 1;
-    else
-        return checkBiggestId() + 1;
-}
-
-int IncomeManager::checkBiggestId(){
-    int biggestId = 0;
-    for(int i = 0 ; i < incomes.size() ; i++){
-        if(incomes[i].getId() > biggestId){
-            biggestId = incomes[i].getId();
-        }
-    }
-    return biggestId;
-}
-
 float IncomeManager::displayCurrentMonthIncomes(){
     Date currentDate;
     currentDate.getTodaysDate();
@@ -99,7 +82,7 @@ float IncomeManager::displayCurrentMonthIncomes(){
 
     for(int i = 0 ; i < incomes.size() ; i++){
         if(incomes[i].getDate().getMonth() == currentDate.getMonth()){
-            incomes[i].displayIncome();
+            incomes[i].displayOperation();
             totalIncome += incomes[i].getValue();
         }
     }
@@ -113,7 +96,7 @@ float IncomeManager::displayPreviousMonthIncomes(){
 
     for(int i = 0 ; i < incomes.size() ; i++){
         if(incomes[i].getDate().getMonth() == currentDate.getMonth() - 1){
-            incomes[i].displayIncome();
+            incomes[i].displayOperation();
             totalIncome += incomes[i].getValue();
         }
     }
@@ -148,7 +131,7 @@ float IncomeManager::displaySpecyfiedPeriodIncomes(Date startDate, Date endDate)
 
     for(int i = 0 ; i < incomes.size() ; i++){
         if((incomes[i].getDate().isItLaterThan(startDate) && !incomes[i].getDate().isItLaterThan(endDate)) || incomes[i].getDate().isItSameDayAs(startDate)){
-            incomes[i].displayIncome();
+            incomes[i].displayOperation();
             totalIncome += incomes[i].getValue();
         }
     }

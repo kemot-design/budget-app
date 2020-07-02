@@ -8,10 +8,12 @@
 using namespace std;
 
 class IncomesFile: XMLFile{
+    int lastIncomeId;
 
 public:
-    IncomesFile(string incomesFileName): XMLFile(incomesFileName) {};
+    IncomesFile(string incomesFileName): XMLFile(incomesFileName), lastIncomeId(0) {};
     bool saveIncomeToFile(Income income);
     vector <Income> loadIncomesFromFile(int loggedUserId);
+    int getLastIncomeId();
 };
 #endif

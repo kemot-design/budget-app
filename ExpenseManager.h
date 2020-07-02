@@ -15,8 +15,6 @@ class ExpenseManager{
     ExpensesFile expensesFile;
 
     Expense setNewExpenseData();
-    int getNewExpenseId();
-    int checkBiggestId();
     void sortExpensesChronologically();
 
 public:

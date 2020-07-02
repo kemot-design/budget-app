@@ -20,6 +20,7 @@ bool IncomesFile::saveIncomeToFile(Income income){
         incomeXML.AddElem("Category", income.getCategory());
         incomeXML.AddElem("Value", AuxiliaryMethods::convertFloatToStr(income.getValue()));
         incomeXML.Save(getFileName());
+        lastIncomeId++;
         return true;
     }
     else{
@@ -34,6 +35,7 @@ bool IncomesFile::saveIncomeToFile(Income income){
         incomeXML.AddElem("Category", income.getCategory());
         incomeXML.AddElem("Value", AuxiliaryMethods::convertFloatToStr(income.getValue()));
         incomeXML.Save(getFileName());
+        lastIncomeId++;
         return true;
     }
     return false;
@@ -69,6 +71,7 @@ vector <Income> IncomesFile::loadIncomesFromFile(int loggedUserId){
             fileWithIncomes.FindElem("Id");
             loadedIntegerData = AuxiliaryMethods::convertStrToInt(fileWithIncomes.GetData());
             loadedIncome.setId(loadedIntegerData);
+            lastIncomeId = loadedIntegerData;
 
             fileWithIncomes.FindElem("Date");
             loadedData = fileWithIncomes.GetData();
@@ -85,6 +88,11 @@ vector <Income> IncomesFile::loadIncomesFromFile(int loggedUserId){
 
             loadedIncomes.push_back(loadedIncome);
         }
+        else{
+            fileWithIncomes.FindElem("Id");
+            loadedIntegerData = AuxiliaryMethods::convertStrToInt(fileWithIncomes.GetData());
+            lastIncomeId = loadedIntegerData;
+        }
 
         fileWithIncomes.OutOfElem();
     }
@@ -92,3 +100,6 @@ vector <Income> IncomesFile::loadIncomesFromFile(int loggedUserId){
     return loadedIncomes;
 }
 
+int IncomesFile::getLastIncomeId(){
+    return lastIncomeId;
+}
